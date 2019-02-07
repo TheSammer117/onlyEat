@@ -32,6 +32,6 @@
             <input type="hidden" name ="action" value="restaurantRegister" />
         </form>
 
-        <%@ include file = "footer.jsp" %>
+
     </body>
 </html>
