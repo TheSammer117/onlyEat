@@ -18,7 +18,6 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String phone;
-    private int addressId;
 
     public Customer(){
         this.customerId = 0;
@@ -27,17 +26,15 @@ public class Customer {
         this.firstName = null;
         this.lastName = null;
         this.phone = null;
-        this.addressId = 0;
     }
     
-    public Customer(int customerId, String username, String password, String firstName, String lastName, String phone, int addressId) {
+    public Customer(int customerId, String username, String password, String firstName, String lastName, String phone) {
         this.customerId = customerId;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
-        this.addressId = addressId;
     }
 
     public int getCustomerId() {
@@ -64,10 +61,6 @@ public class Customer {
         return phone;
     }
 
-    public int getAddressId() {
-        return addressId;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -88,16 +81,12 @@ public class Customer {
         this.phone = phone;
     }
 
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 29 * hash + this.customerId;
-        hash = 29 * hash + Objects.hashCode(this.username);
-        hash = 29 * hash + this.addressId;
+        hash = 97 * hash + this.customerId;
+        hash = 97 * hash + Objects.hashCode(this.username);
+        hash = 97 * hash + Objects.hashCode(this.phone);
         return hash;
     }
 
@@ -116,10 +105,10 @@ public class Customer {
         if (this.customerId != other.customerId) {
             return false;
         }
-        if (this.addressId != other.addressId) {
+        if (!Objects.equals(this.username, other.username)) {
             return false;
         }
-        if (!Objects.equals(this.username, other.username)) {
+        if (!Objects.equals(this.phone, other.phone)) {
             return false;
         }
         return true;
@@ -127,8 +116,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "customerId=" + customerId + ", username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone + ", addressId=" + addressId + '}';
+        return "Customer{" + "customerId=" + customerId + ", username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone + '}';
     }
-    
-    
+       
 }

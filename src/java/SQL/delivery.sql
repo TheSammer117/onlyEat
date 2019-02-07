@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2019 at 12:07 PM
+-- Generation Time: Jan 31, 2019 at 01:13 PM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.1.6
 
@@ -34,8 +34,7 @@ CREATE TABLE `customer` (
   `password` varchar(25) NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
-  `phone` int(15) NOT NULL,
-  `address_id` int(4) NOT NULL
+  `phone` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -59,6 +58,7 @@ CREATE TABLE `customer_order` (
 
 CREATE TABLE `c_address` (
   `address_id` int(4) NOT NULL,
+  `customer_id` int(4) NOT NULL,
   `address1` varchar(30) NOT NULL,
   `address2` int(20) NOT NULL,
   `address3` int(20) NOT NULL
@@ -125,8 +125,7 @@ CREATE TABLE `restaurant` (
   `username` varchar(15) NOT NULL,
   `password` varchar(25) NOT NULL,
   `name` varchar(25) NOT NULL,
-  `phone` int(15) NOT NULL,
-  `address_id` int(4) NOT NULL
+  `phone` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -137,6 +136,7 @@ CREATE TABLE `restaurant` (
 
 CREATE TABLE `r_address` (
   `address_id` int(4) NOT NULL,
+  `restaurant_id` int(4) NOT NULL,
   `address1` varchar(30) NOT NULL,
   `address2` int(20) NOT NULL,
   `address3` int(20) NOT NULL
@@ -151,8 +151,7 @@ CREATE TABLE `r_address` (
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`customer_id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD KEY `address_id` (`address_id`);
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `customer_order`
@@ -165,7 +164,8 @@ ALTER TABLE `customer_order`
 -- Indexes for table `c_address`
 --
 ALTER TABLE `c_address`
-  ADD PRIMARY KEY (`address_id`);
+  ADD PRIMARY KEY (`address_id`),
+  ADD KEY `customer_id` (`customer_id`);
 
 --
 -- Indexes for table `food`
@@ -201,14 +201,14 @@ ALTER TABLE `order_detail`
 --
 ALTER TABLE `restaurant`
   ADD PRIMARY KEY (`restaurant_id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD KEY `address_id` (`address_id`);
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `r_address`
 --
 ALTER TABLE `r_address`
-  ADD PRIMARY KEY (`address_id`);
+  ADD PRIMARY KEY (`address_id`),
+  ADD KEY `restaurant_id` (`restaurant_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -264,16 +264,16 @@ ALTER TABLE `r_address`
 --
 
 --
--- Constraints for table `customer`
---
-ALTER TABLE `customer`
-  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `c_address` (`address_id`);
-
---
 -- Constraints for table `customer_order`
 --
 ALTER TABLE `customer_order`
   ADD CONSTRAINT `customer_order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+
+--
+-- Constraints for table `c_address`
+--
+ALTER TABLE `c_address`
+  ADD CONSTRAINT `c_address_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
 
 --
 -- Constraints for table `food`
@@ -296,10 +296,10 @@ ALTER TABLE `order_detail`
   ADD CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`);
 
 --
--- Constraints for table `restaurant`
+-- Constraints for table `r_address`
 --
-ALTER TABLE `restaurant`
-  ADD CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `r_address` (`address_id`);
+ALTER TABLE `r_address`
+  ADD CONSTRAINT `r_address_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
