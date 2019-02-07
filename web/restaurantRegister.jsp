@@ -19,7 +19,7 @@
                     <td>Username: </td> <td><input type="text" name="username"  required/></td>
                 </tr>
                 <tr>
-                    <td>Password: </td> <td><input type="text" name="password"  required/></td>
+                    <td>Password: </td> <td><input type="password" name="password"  required/></td>
                 </tr>
                 <tr>
                     <td>Name: </td> <td><input type="text" name="name"  required/></td>
