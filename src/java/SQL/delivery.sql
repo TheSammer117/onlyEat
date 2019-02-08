@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2019 at 01:13 PM
--- Server version: 10.1.24-MariaDB
--- PHP Version: 7.1.6
+-- Generation Time: Feb 08, 2019 at 02:07 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `delivery`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `county`
+--
+
+CREATE TABLE `county` (
+  `county_id` int(4) NOT NULL,
+  `name` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -125,26 +136,21 @@ CREATE TABLE `restaurant` (
   `username` varchar(15) NOT NULL,
   `password` varchar(25) NOT NULL,
   `name` varchar(25) NOT NULL,
-  `phone` int(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `r_address`
---
-
-CREATE TABLE `r_address` (
-  `address_id` int(4) NOT NULL,
-  `restaurant_id` int(4) NOT NULL,
-  `address1` varchar(30) NOT NULL,
-  `address2` int(20) NOT NULL,
-  `address3` int(20) NOT NULL
+  `phone` int(15) NOT NULL,
+  `street` varchar(40) NOT NULL,
+  `town` varchar(20) NOT NULL,
+  `county_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `county`
+--
+ALTER TABLE `county`
+  ADD PRIMARY KEY (`county_id`);
 
 --
 -- Indexes for table `customer`
@@ -201,64 +207,67 @@ ALTER TABLE `order_detail`
 --
 ALTER TABLE `restaurant`
   ADD PRIMARY KEY (`restaurant_id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `r_address`
---
-ALTER TABLE `r_address`
-  ADD PRIMARY KEY (`address_id`),
-  ADD KEY `restaurant_id` (`restaurant_id`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `county_id` (`county_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `county`
+--
+ALTER TABLE `county`
+  MODIFY `county_id` int(4) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `customer_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `customer_order`
 --
 ALTER TABLE `customer_order`
   MODIFY `order_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `c_address`
 --
 ALTER TABLE `c_address`
   MODIFY `address_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
   MODIFY `food_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `food_type`
 --
 ALTER TABLE `food_type`
   MODIFY `type_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `menu_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
   MODIFY `detail_id` int(6) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
   MODIFY `restaurant_id` int(4) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `r_address`
---
-ALTER TABLE `r_address`
-  MODIFY `address_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --
@@ -296,10 +305,10 @@ ALTER TABLE `order_detail`
   ADD CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`);
 
 --
--- Constraints for table `r_address`
+-- Constraints for table `restaurant`
 --
-ALTER TABLE `r_address`
-  ADD CONSTRAINT `r_address_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`);
+ALTER TABLE `restaurant`
+  ADD CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`county_id`) REFERENCES `county` (`county_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
