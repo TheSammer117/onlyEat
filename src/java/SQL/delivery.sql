@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2019 at 02:07 PM
+-- Generation Time: Feb 10, 2019 at 07:14 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -32,6 +32,44 @@ CREATE TABLE `county` (
   `county_id` int(4) NOT NULL,
   `name` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `county`
+--
+
+INSERT INTO `county` (`county_id`, `name`) VALUES
+(1, 'Antrim'),
+(2, 'Armagh'),
+(3, 'Carlow'),
+(4, 'Cavan'),
+(5, 'Clare'),
+(6, 'Cork'),
+(7, 'Derry'),
+(8, 'Donegal'),
+(9, 'Down'),
+(10, 'Dublin'),
+(11, 'Fermanagh'),
+(12, 'Galway'),
+(13, 'Kerry'),
+(14, 'Kildare'),
+(15, 'Kilkenny'),
+(16, 'Laois'),
+(17, 'Leitrim'),
+(18, 'Limerick'),
+(19, 'Longford'),
+(20, 'Louth'),
+(21, 'Mayo'),
+(22, 'Meath'),
+(23, 'Monaghan'),
+(24, 'Offaly'),
+(25, 'Roscommon'),
+(26, 'Sligo'),
+(27, 'Tipperary'),
+(28, 'Tyrone'),
+(29, 'Waterford'),
+(30, 'Westmeath'),
+(31, 'Wexford'),
+(32, 'Wicklow');
 
 -- --------------------------------------------------------
 
@@ -119,7 +157,6 @@ CREATE TABLE `menu` (
 --
 
 CREATE TABLE `order_detail` (
-  `detail_id` int(6) NOT NULL,
   `order_id` int(4) NOT NULL,
   `food_id` int(4) NOT NULL,
   `quantity` int(2) NOT NULL
@@ -198,7 +235,7 @@ ALTER TABLE `menu`
 -- Indexes for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  ADD PRIMARY KEY (`detail_id`),
+  ADD PRIMARY KEY (`order_id`,`food_id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `food_id` (`food_id`);
 
@@ -218,7 +255,7 @@ ALTER TABLE `restaurant`
 -- AUTO_INCREMENT for table `county`
 --
 ALTER TABLE `county`
-  MODIFY `county_id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `county_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -255,12 +292,6 @@ ALTER TABLE `food_type`
 --
 ALTER TABLE `menu`
   MODIFY `menu_id` int(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_detail`
---
-ALTER TABLE `order_detail`
-  MODIFY `detail_id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `restaurant`
