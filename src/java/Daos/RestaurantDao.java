@@ -23,7 +23,7 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
     }
 
     @Override
-    public int registerRestaurant(String username, String password, String name, String phone) {
+    public int registerRestaurant(String username, String password, String name, String phone, String street, String town, int countyId) {
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -34,7 +34,7 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
 
             con = this.getConnection();
 
-            String query = "INSERT INTO restaurant(username, password, name, phone) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO restaurant(username, password, name, phone, street, town, county_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
@@ -42,6 +42,9 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
             ps.setString(2, password);
             ps.setString(3, name);
             ps.setString(4, phone);
+            ps.setString(5, street);
+            ps.setString(6, town);
+            ps.setInt(7, countyId);
 
             ps.executeUpdate();
 
@@ -71,10 +74,10 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
         }
         return newId;
     }
-    
+
     @Override
     public Restaurant getRestaurantByUsernamePassword(String username, String password) {
-         Connection con = null;
+        Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         Restaurant r = null;
@@ -92,8 +95,11 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
                 int restaurantId = rs.getInt("restaurant_id");
                 String name = rs.getString("name");
                 String phone = rs.getString("phone");
+                String street = rs.getString("street");
+                String town = rs.getString("town");
+                int countyId = rs.getInt("county_id");
 
-                r = new Restaurant(restaurantId, username, password, name, phone);
+                r = new Restaurant(restaurantId, username, password, name, phone, street, town, countyId);
             }
 
         } catch (SQLException ex) {
@@ -122,7 +128,4 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
         }
         return r;
     }
-    
-    
-
 }

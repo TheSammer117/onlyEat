@@ -13,7 +13,7 @@ import Dtos.Restaurant;
  */
 public interface RestaurantDaoInterface {
 
-    public int registerRestaurant(String username, String password, String name, String phone);
+    public int registerRestaurant(String username, String password, String name, String phone,String street, String town, int countyId);
      public Restaurant getRestaurantByUsernamePassword(String username, String password);
 
 }
