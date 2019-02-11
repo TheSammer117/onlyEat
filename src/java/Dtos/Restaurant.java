@@ -18,7 +18,9 @@ public class Restaurant {
     private String password;
     private String name;
     private String phone;
-
+    private String street;
+    private String town;
+    private int countyId;
 
     public Restaurant() {
         this.restaurantId = 0;
@@ -26,16 +28,22 @@ public class Restaurant {
         this.password = null;
         this.name = null;
         this.phone = null;
+        this.street = null;
+        this.town = null;
+        this.countyId = 0;
 
     }
 
-    public Restaurant(int restaurantId, String username, String password, String name, String phone) {
+    public Restaurant(int restaurantId, String username, String password, String name, String phone, String street, String town, int countyId) {
         this.restaurantId = restaurantId;
         this.username = username;
         this.password = password;
         this.name = name;
         this.phone = phone;
-       
+        this.street = street;
+        this.town = town;
+        this.countyId = countyId;
+
     }
 
     public int getRestaurantId() {
@@ -78,10 +86,35 @@ public class Restaurant {
         this.phone = phone;
     }
 
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public int getCountyId() {
+        return countyId;
+    }
+
+    public void setCountyId(int countyId) {
+        this.countyId = countyId;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + this.restaurantId;
+        hash = 13 * hash + this.restaurantId;
+        hash = 13 * hash + Objects.hashCode(this.username);
         return hash;
     }
 
@@ -108,9 +141,7 @@ public class Restaurant {
 
     @Override
     public String toString() {
-        return "Restaurant{" + "restaurantId=" + restaurantId + ", username=" + username + ", password=" + password + ", name=" + name + ", phone=" + phone + '}';
+        return "Restaurant{" + "restaurantId=" + restaurantId + ", username=" + username + ", password=" + password + ", name=" + name + ", phone=" + phone + ", street=" + street + ", town=" + town + ", countyId=" + countyId + '}';
     }
-
-  
 
 }
