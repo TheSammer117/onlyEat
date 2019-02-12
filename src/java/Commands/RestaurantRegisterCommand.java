@@ -25,10 +25,19 @@ public class RestaurantRegisterCommand implements Command {
         String password = request.getParameter("password");
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
-
-        if (username != null && !username.equals("") && !phone.equals("") && password != null && !password.equals("") && name != null && phone != null ) {
+        String street = request.getParameter("street");
+        String town = request.getParameter("town");
+        int countyId = 0;
+     try {
+            countyId = Integer.parseInt(request.getParameter("countyId"));
+        } catch (NumberFormatException e) {
+            forwardToJsp = "error.jsp";
+            HttpSession session = request.getSession();
+            session.setAttribute("errorMessage", "Notvaliddata");
+        }
+        if (username != null && !username.equals("") && !phone.equals("") && password != null && !password.equals("") && name != null && phone != null && street != null&& town != null&& countyId != 0) {
             RestaurantDao rDao = new RestaurantDao("delivery");
-            int newId = rDao.registerRestaurant(username, password, name, phone);
+            int newId = rDao.registerRestaurant(username, password, name, phone, street, town ,countyId);
             if (newId != -1) {
 
                 Restaurant r = rDao.getRestaurantByUsernamePassword(username, password);
