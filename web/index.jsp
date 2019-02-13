@@ -13,17 +13,6 @@
         <title>Only Eat</title>
     </head>
     <body>
-        <%             Customer loggedInUser = (Customer) session.getAttribute("loggedInUser");
-            if (loggedInUser != null) {
-        %>
-        <h1>Hello <%= loggedInUser.getUsername() %></h1>
-        <a href="FrontController?action=logout">Logout</a>
-        <%
-        } else {
-        %>
-        <a href="customerLogin.jsp">Login</a>
-        <%
-            }
-        %>
+        <%@ include file = "cHeader.jsp" %>
     </body>
 </html>
