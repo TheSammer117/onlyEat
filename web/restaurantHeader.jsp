@@ -12,9 +12,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     </head>
+    <script src="Jquery/jquery-3.3.1.js"></script>
+    <script src="Jquery/rememberMe.js">
+    </script>
     <body>
-        <%
-            Restaurant loggedInUser = (Restaurant) session.getAttribute("loggedInRestaurant");
+
+        <%             Restaurant loggedInUser = (Restaurant) session.getAttribute("loggedInRestaurant");
             if (loggedInUser != null) {
         %>
         <a href="FrontController?action=logout">Logout</a>
@@ -33,27 +36,27 @@
             %>
             <form action="FrontController" method="post">
                 <table>
-                    <tr>
-                        <td> Username  : </td><td> <input name="username" required size=20 type="text" /> </td> 
-                    </tr>
-                    <tr>
-                        <td> Password  : </td><td> <input name="password" required size=50 type="password" /> </td> 
-                    </tr>
+                    <tr><td>Username: </td><td><input name="username" required size=20 type="text" id="username"/> </td></tr>
+                    <tr><td>Password: </td><td> <input name="password" required size=50 type="password" id="pass"/> </td> </tr>
+                    <tr><td>Remember me</td><td><input name="remember-me" type="checkbox" value="remember-me" id="remember_me"/></td></tr>
                 </table>
-                <input type="submit" value="RestaurantLogin" />
+                <input type="submit" value="Login" />
                 <input type="hidden" name ="action" value="restaurantLogin" />
-                <label for="remember-me">
-                    <input name="aaaa" type="checkbox" onclick="remember();">
-                     remeber me 
-                </label>
+
             </form>
             <a href="restaurantRegister.jsp">Register</a>
         </div>
-
-
-
         <%
             }
+        %>
+
+        <%            String successMessage = (String) session.getAttribute("successMessage");
+            if (successMessage != null) {
+        %>
+        <h3><%=successMessage%></h3>
+        <%
+            }
+            session.removeAttribute("successMessage");
         %>
     </body>
 </html>
