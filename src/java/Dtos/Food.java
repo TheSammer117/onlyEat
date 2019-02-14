@@ -29,6 +29,10 @@ public class Food {
         this.typeId = typeId;
     }
         
+        public Food(){
+            
+        }
+        
         @Override
         public int hashCode(){
             int hash = 3;
