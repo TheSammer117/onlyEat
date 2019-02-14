@@ -6,6 +6,7 @@
 package Daos;
 
 import Dtos.Restaurant;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,5 +16,5 @@ public interface RestaurantDaoInterface {
 
     public int registerRestaurant(String username, String password, String name, String phone,String street, String town, int countyId);
      public Restaurant getRestaurantByUsernamePassword(String username, String password);
-
+     public ArrayList<Restaurant> getAllRestaurants();
 }

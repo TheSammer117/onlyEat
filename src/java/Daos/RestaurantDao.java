@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -127,5 +128,49 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
             }
         }
         return r;
+    }
+    
+    @Override
+    public ArrayList<Restaurant> getAllRestaurants(){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Restaurant> restaurants = new ArrayList<>();
+        
+        try{
+            conn = getConnection();
+            String query = "SELECT * FROM restaurant";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            
+            while (rs.next()){
+                Restaurant r = new Restaurant(rs.getInt("restaurant_id"),
+                rs.getString("username"),
+                rs.getString("password"),
+                rs.getString("name"),
+                rs.getString("phone"),
+                rs.getString("street"),
+                rs.getString("town"),
+                rs.getInt("county_id"));
+               restaurants.add(r);
+            }
+        }catch(SQLException e){
+            System.out.println("Exception occured in the getAllRestaurants() method: " + e.getMessage());
+        } finally{
+            try{
+                if(rs != null){
+                    rs.close();
+                }
+                if(ps != null){
+                    ps.close();
+                }
+                if(conn != null){
+                    freeConnection(conn);
+                }
+            } catch(SQLException e){
+                System.out.println("Exception occured in the finally section of the getAllRestaurants() method, " + e.getMessage());
+            }
+        }
+        return restaurants;
     }
 }
