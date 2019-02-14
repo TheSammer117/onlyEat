@@ -22,7 +22,7 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         super(databaseName);
     }
 
-    @Override
+    /**@Override
     public ArrayList<Food> getFoodByMenuId(int menuId) {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -66,5 +66,5 @@ public class FoodDao extends Dao implements FoodDaoInterface {
             }
         }
         return fList;
-    }
+    }*/
 }
