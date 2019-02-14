@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2019 at 07:14 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Generation Time: Feb 14, 2019 at 12:25 PM
+-- Server version: 10.1.24-MariaDB
+-- PHP Version: 7.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -121,7 +121,7 @@ CREATE TABLE `c_address` (
 
 CREATE TABLE `food` (
   `food_id` int(4) NOT NULL,
-  `menu_id` int(4) NOT NULL,
+  `restaurant_id` int(4) NOT NULL,
   `name` varchar(20) NOT NULL,
   `price` double(10,2) NOT NULL,
   `type_id` int(4) NOT NULL
@@ -137,17 +137,6 @@ CREATE TABLE `food_type` (
   `type_id` int(4) NOT NULL,
   `name` varchar(15) NOT NULL,
   `description` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menu`
---
-
-CREATE TABLE `menu` (
-  `menu_id` int(4) NOT NULL,
-  `restaurant_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -215,7 +204,7 @@ ALTER TABLE `c_address`
 --
 ALTER TABLE `food`
   ADD PRIMARY KEY (`food_id`),
-  ADD KEY `menu_id` (`menu_id`),
+  ADD KEY `menu_id` (`restaurant_id`),
   ADD KEY `type_id` (`type_id`);
 
 --
@@ -223,13 +212,6 @@ ALTER TABLE `food`
 --
 ALTER TABLE `food_type`
   ADD PRIMARY KEY (`type_id`);
-
---
--- Indexes for table `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`menu_id`),
-  ADD KEY `restaurant_id` (`restaurant_id`);
 
 --
 -- Indexes for table `order_detail`
@@ -256,49 +238,36 @@ ALTER TABLE `restaurant`
 --
 ALTER TABLE `county`
   MODIFY `county_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `customer_id` int(4) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `customer_order`
 --
 ALTER TABLE `customer_order`
   MODIFY `order_id` int(4) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `c_address`
 --
 ALTER TABLE `c_address`
   MODIFY `address_id` int(4) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
   MODIFY `food_id` int(4) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `food_type`
 --
 ALTER TABLE `food_type`
   MODIFY `type_id` int(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `menu`
---
-ALTER TABLE `menu`
-  MODIFY `menu_id` int(4) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
   MODIFY `restaurant_id` int(4) NOT NULL AUTO_INCREMENT;
-
 --
 -- Constraints for dumped tables
 --
@@ -319,14 +288,8 @@ ALTER TABLE `c_address`
 -- Constraints for table `food`
 --
 ALTER TABLE `food`
-  ADD CONSTRAINT `food_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`),
-  ADD CONSTRAINT `food_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `food_type` (`type_id`);
-
---
--- Constraints for table `menu`
---
-ALTER TABLE `menu`
-  ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`);
+  ADD CONSTRAINT `food_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `food_type` (`type_id`),
+  ADD CONSTRAINT `food_ibfk_3` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`);
 
 --
 -- Constraints for table `order_detail`
