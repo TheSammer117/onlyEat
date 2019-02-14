@@ -18,6 +18,7 @@
         <h1>Hello <%= loggedInUser.getUsername() %></h1>
         <a href="FrontController?action=logout">Logout</a>
         <a href="customerProfile.jsp?customerId=<%=loggedInUser.getCustomerId() %>">View My Profile</a>
+         <a href="FrontController?action=viewRestaurants">View restaurant list</a>
         <%
         } else {
         %>

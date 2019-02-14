@@ -31,6 +31,9 @@ public class CommandFactory {
                 case "restaurantRegister":
                     c = new RestaurantRegisterCommand();
                     break;
+                case "viewRestaurants":
+                    c = new ViewAllRestaurantsCommand();
+                    break;
                 case "logout":
                     c = new LogoutCommand();
                     break;
