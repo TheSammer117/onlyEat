@@ -13,5 +13,5 @@ import java.util.ArrayList;
  * @author samiwise
  */
 public interface FoodDaoInterface {
-  
+  public ArrayList<Food> getFoodByRestaurantId(int restaurantId);
 }
