@@ -14,7 +14,7 @@
         <title>View Restaurants</title>
     </head>
     <body>
-        <a href="index.html">Back to index</a>
+        <a href="index.jsp">Back to index</a>
         <h1>Restaurant List</h1>
         <%
 //Get Restaurant List from session
