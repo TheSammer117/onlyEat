@@ -11,20 +11,20 @@ package Dtos;
  */
 public class Food {
     private int foodId;
-    private int menuId;
+    private int restaurantId;
     private String name;
     private double price;
     private int typeId;
     
-    public Food(int foodId, int menuId, String name, double price, int typeId){
+    public Food(int foodId, int restaurantId, String name, double price, int typeId){
         this.foodId = foodId;
-        this.menuId = menuId;
+        this.restaurantId = restaurantId;
         this.price = price;
         this.typeId = typeId;
     }
     
-        public Food(int menuId, String name, double price, int typeId){
-        this.menuId = menuId;
+        public Food(int restaurantId, String name, double price, int typeId){
+        this.restaurantId = restaurantId;
         this.price = price;
         this.typeId = typeId;
     }
@@ -66,12 +66,12 @@ public class Food {
         this.foodId = foodId;
     }
 
-    public int getMenuId() {
-        return menuId;
+    public int getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setMenuId(int menuId) {
-        this.menuId = menuId;
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public String getName() {
@@ -101,7 +101,7 @@ public class Food {
         @Override
         public String toString(){
             return "Food ID:" + foodId +
-                    "\nMenu ID: " + menuId +
+                    "\nRestaurant ID: " + restaurantId +
                     "\nName: " + name+
                     "\nPrice: " + price +
                     "\nType ID: " + typeId;
