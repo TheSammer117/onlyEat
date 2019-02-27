@@ -34,12 +34,15 @@ public class CommandFactory {
                 case "viewRestaurants":
                     c = new ViewAllRestaurantsCommand();
                     break;
+                case "saveCustomerProfile":
+                    c = new SaveCustomerProfileCommand();
+                    break;
                 case "viewMenu":
                     c = new ViewMenuCommand();
                     break;
-                 case "addFood":
+                case "addFood":
                     c = new AddFoodCommand();
-                    break;    
+                    break;
                 case "logout":
                     c = new LogoutCommand();
                     break;

@@ -112,4 +112,34 @@ public class CustomerDao extends Dao implements CustomerDaoInterface {
         return c;
     }
 
+    @Override
+    public int updateCustomerProfile(int customerId, String username, String firstName, String lastName, String phone) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        int rowsUpdated = 0;
+        try {
+            conn = getConnection();
+            String query = "update customer set username =  ?, first_name = ?, last_name = ?, phone = ? where customer_id = ?";
+            ps = conn.prepareStatement(query);
+
+            ps.setString(1, username);
+            ps.setString(2, firstName);
+            ps.setString(3, lastName);
+            ps.setString(4, phone);
+            ps.setInt(5, customerId);
+            rowsUpdated = ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("An exception occurred in the updateCustomerProfile(): " + e.getMessage());
+        } finally {
+
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                System.out.println("An exception occurred when closing the PreparedStatement of the updateCustomerProfile(): " + e.getMessage());
+            }
+
+            freeConnection(conn);
+        }
+        return rowsUpdated;
+    }
 }

@@ -24,6 +24,7 @@
         %>
         <h1>You are not logged in</h1>
         <a href="customerLogin.jsp">Login</a>
+        <a href="customerRegister.jsp">Register</a>
         <%
             }
         %>

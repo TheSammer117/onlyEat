@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2019 at 12:25 PM
--- Server version: 10.1.24-MariaDB
--- PHP Version: 7.1.6
+-- Generation Time: Feb 27, 2019 at 08:42 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -96,7 +96,9 @@ CREATE TABLE `customer_order` (
   `order_id` int(4) NOT NULL,
   `customer_id` int(4) NOT NULL,
   `customer_message` varchar(50) DEFAULT NULL,
-  `order_date` date NOT NULL
+  `order_date` date NOT NULL,
+  `is_paid` int(1) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -109,8 +111,8 @@ CREATE TABLE `c_address` (
   `address_id` int(4) NOT NULL,
   `customer_id` int(4) NOT NULL,
   `address1` varchar(30) NOT NULL,
-  `address2` int(20) NOT NULL,
-  `address3` int(20) NOT NULL
+  `address2` varchar(30) NOT NULL,
+  `address3` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -238,36 +240,43 @@ ALTER TABLE `restaurant`
 --
 ALTER TABLE `county`
   MODIFY `county_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `customer_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `customer_order`
 --
 ALTER TABLE `customer_order`
   MODIFY `order_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `c_address`
 --
 ALTER TABLE `c_address`
   MODIFY `address_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
   MODIFY `food_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `food_type`
 --
 ALTER TABLE `food_type`
   MODIFY `type_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
   MODIFY `restaurant_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --

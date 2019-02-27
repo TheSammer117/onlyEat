@@ -13,4 +13,6 @@ import Dtos.C_address;
  */
 public interface C_addressDaoInterface {
     public C_address getCustomerAddressByCustomerId(int customerId);
+    public int addCustomerAddress(int customerId, String address1, String address2, String address3);
+    public int updateCustomerAddress(int customerId, String address1, String address2, String address3);
 }

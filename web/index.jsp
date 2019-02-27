@@ -14,5 +14,14 @@
     </head>
     <body>
         <%@ include file = "cHeader.jsp" %>
+        <%            String successMessage = (String) session.getAttribute("successMessage");
+            if (successMessage != null) {
+        %>
+        <h3><%=successMessage%></h3>
+        <%
+            }
+            session.removeAttribute("successMessage");
+
+        %>
     </body>
 </html>

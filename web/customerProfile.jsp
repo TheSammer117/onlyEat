@@ -4,6 +4,7 @@
     Author     : zbo97
 --%>
 
+<%@page import="Daos.CustomerDao"%>
 <%@page import="Dtos.C_address"%>
 <%@page import="Daos.C_addressDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -55,7 +56,8 @@
                         <td>Address Line 3: </td> <td><input type="text" name="address3" value="<%= ca.getAddress3() %>" required/></td>
                     </tr>
                 </table>
-                    <input type="hidden" name ="action" value="saveUserDetails" />
+                    <input type="hidden" name ="action" value="saveCustomerProfile" />
+                    <input type="hidden" name ="customerId" type="text" value="<%= loggedInUser.getCustomerId() %>" />
                     <input type="submit" value="Save" />
             </form>
         </div>
