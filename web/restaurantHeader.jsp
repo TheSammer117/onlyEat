@@ -4,6 +4,10 @@
     Author     : 82509
 --%>
 
+<%@page import="Daos.FoodTypeDao"%>
+<%@page import="Dtos.Food"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Daos.FoodDao"%>
 <%@page import="Dtos.Restaurant"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -50,13 +54,5 @@
             }
         %>
 
-        <%            String successMessage = (String) session.getAttribute("successMessage");
-            if (successMessage != null) {
-        %>
-        <h3><%=successMessage%></h3>
-        <%
-            }
-            session.removeAttribute("successMessage");
-        %>
     </body>
 </html>
