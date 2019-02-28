@@ -22,42 +22,41 @@ public class AddFoodCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String forwardToJsp = "";
         int restaurantId = Integer.parseInt(request.getParameter("restaurantId"));
-        if (restaurantId > 0) {
+        if (restaurantId != 0) {
             String name = request.getParameter("name");
             double price = 0;
-            try {
-                price = Double.parseDouble(request.getParameter("price"));
-            } catch (NumberFormatException e) {
-                forwardToJsp = "error.jsp";
-                HttpSession session = request.getSession();
-                session.setAttribute("errorMessage", "Notvaliddata");
-            }
             int typeId = 0;
             try {
+                price = Double.parseDouble(request.getParameter("price"));
                 typeId = Integer.parseInt(request.getParameter("typeId"));
             } catch (NumberFormatException e) {
                 forwardToJsp = "error.jsp";
                 HttpSession session = request.getSession();
                 session.setAttribute("errorMessage", "Notvaliddata");
             }
+
             if (name != null && !name.equals("") && price != -1 && restaurantId != 0 && typeId != 0) {
                 FoodDao fDao = new FoodDao("delivery");
-                Food f1 = new Food(restaurantId, name, price, typeId);
-                fDao.addAFood(f1);
+                int foodId = 0;
+                foodId = fDao.addAFood(restaurantId, name, price, typeId);
+                if (foodId != -1) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("successMessage", "foodAddedsuccessfully");
+                    forwardToJsp = "restaurantIndex.jsp";
+                } else {
+                    forwardToJsp = "error.jsp";
+                    HttpSession session = request.getSession();
+                    session.setAttribute("errorMessage", "somethingWentWrong");
+                }
+            } else {
+                forwardToJsp = "error.jsp";
+
+                HttpSession session = request.getSession();
+
+                session.setAttribute("errorMessage", "A parameter value required for viewing the menu was missing.");
             }
 
-               HttpSession session = request.getSession();
-            session.setAttribute("successMessage", "foodAddedsuccessfully");
-            forwardToJsp = "restaurantIndex.jsp";
-        } else {
-            forwardToJsp = "error.jsp";
-
-            HttpSession session = request.getSession();
-
-            session.setAttribute("errorMessage", "A parameter value required for viewing the menu was missing.");
         }
         return forwardToJsp;
     }
 }
-
-
