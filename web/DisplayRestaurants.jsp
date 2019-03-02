@@ -17,10 +17,11 @@
         <a href="index.jsp">Back to index</a>
         <h1>Restaurant List</h1>
         <%
-//Get Restaurant List from session
-            ArrayList<Restaurant> restaurants = (ArrayList<Restaurant>) session.getAttribute("restaurantList");
+// //Get Restaurant List from session
+   //         ArrayList<Restaurant> restaurants = (ArrayList<Restaurant>) session.getAttribute("restaurantList");
             // If there is a restaurant list to use in the session (and it's not empty)
-
+            RestaurantDao rDao = new RestaurantDao("delivery");
+ArrayList<Restaurant> restaurants = rDao.getAllRestaurants();
             if (restaurants != null && !restaurants.isEmpty()) {
 
 
@@ -35,7 +36,7 @@
             <%                for (Restaurant r : restaurants) {
             %>
             <tr>
-                <td><%=r.getName()%></td>
+                <td><a href="ViewMenu.jsp?restId=<%=r.getRestaurantId()%>"><%=r.getName()%></td>
                 <td><%=r.getPhone()%></td>
                 <td><%=r.getStreet()%></td>
                 <td><%=r.getTown()%></td>

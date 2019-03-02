@@ -17,10 +17,27 @@
         <a href="index.jsp">Back to index</a>
         <h1>Menu</h1>
         <%
-            //get menu from session
+            
+            String idVal = request.getParameter("restId");
+            
+            if(idVal != null){
+                int restId = 0;
+                try{
+                    restId = Integer.parseInt(idVal);
+                } catch(NumberFormatException e){
+                    String errorMessage = "Text was supplied for RestaurantId (instead of a number)";
+                    session.setAttribute("errorMessage", errorMessage);
+                    response.sendRedirect("error.jsp");
+                }
+                
+                FoodDao mDao = new FoodDao("delivery");
+                ArrayList<Food> menu = mDao.getFoodByRestaurantId(restId);
+                if(menu != null){
+            }
+           /** //get menu from session
             ArrayList<Food> menu = (ArrayList<Food>) session.getAttribute("menu");
 
-            if (menu != null && !menu.isEmpty()) {
+            if (menu != null && !menu.isEmpty()) {**/
 
 
         %>
@@ -32,8 +49,8 @@
             <% for (Food f : menu) {
             %>
             <tr>
-            <tdt><%= f.getName()%></tdt>
-            <tdt><%= f.getPrice()%></tdt>
+            <td><%= f.getName()%></td>
+            <td><%= f.getPrice()%></td>
         </tr>
         <%
                 }
