@@ -91,18 +91,24 @@
                 <td><%=foods.get(i).getPrice()%></td>
                 <td><%=name%></td>
                 <td>
+                    <form action="updatePrice.jsp" method="post">
+                        <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
+                        <input type="hidden" name ="foodId" value="<%=foods.get(i).getFoodId()%>" />
+                        <input type="submit" value="Update the Price" /> 
+                    </form>
+                </td>
+                <td>
                     <form action="FrontController" method="post">
                         <input type="hidden" name ="action" value="deleteFood" />
                         <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
                         <input type="hidden" name ="foodId" value="<%=foods.get(i).getFoodId()%>" />
                         <input type="submit" value="Delete the Food" /> 
                     </form>
-                </td>
+                </td>                
             </tr>
             <%}
                 }%>
             <form action="AddFood.jsp" method="post">
-                 <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
               <input type="submit" value="Add the food" /> 
             </form>
         </table>

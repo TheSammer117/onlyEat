@@ -15,8 +15,12 @@ import java.util.ArrayList;
 public interface FoodDaoInterface {
 
     public ArrayList<Food> getFoodByRestaurantId(int restaurantId);
+    
+    public Food getFood(int restaurantId, int foodId);
 
     public int addAFood(int restaurantId, String food, double price, int typeId);
 
     public int removeFood(int restaurantId, int foordId);
+    
+     public int updatePrice(int restaurantId, int foordId,double price);
 }

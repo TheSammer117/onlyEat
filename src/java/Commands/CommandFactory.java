@@ -46,6 +46,8 @@ public class CommandFactory {
                 case "deleteFood":
                     c = new DeleteFoodCommand();
                     break;
+                case "updatePrice":
+                    c = new UpdatePriceCommand();
                 case "logout":
                     c = new LogoutCommand();
                     break;

@@ -140,10 +140,91 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         }
         return rowsAffected;
     }
-        public static void main(String [] args){
-            FoodDao f = new FoodDao("delivery");
-            System.out.println(f.removeFood(1, 2));
-         
-                 
+
+    public static void main(String[] args) {
+        FoodDao f = new FoodDao("delivery");
+        System.out.println(f.removeFood(1, 2));
+
+    }
+
+    @Override
+    public int updatePrice(int restaurantId, int foordId, double price) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        int returnValue = -1;
+        try {
+            con = getConnection();
+
+            String query = " UPDATE food SET price = ? WHERE food_id = ? AND restaurant_Id = ?";
+            ps = con.prepareStatement(query);
+
+            ps.setDouble(1, price);
+            ps.setInt(2, foordId);
+            ps.setInt(3, restaurantId);
+            ps.executeUpdate();
+            returnValue = 1;
+
+        } catch (SQLException e) {
+            System.out.println("Exception occured in the updatePrice() method: " + e.getMessage());
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.out.println("Exception occured in the finally section of the updatePrice() method");
+                e.getMessage();
+            }
         }
+        return returnValue;
+    }
+
+    @Override
+    public Food getFood(int restaurantId, int foodId) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Food food = null;
+
+        try {
+            conn = getConnection();
+            String query = "SELECT * FROM food WHERE restaurant_id = ? AND  food_id =?";
+            ps = conn.prepareStatement(query);
+
+            ps.setInt(1, restaurantId);
+            ps.setInt(2, foodId);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                food = new Food();
+                food.setFoodId(rs.getInt("food_id"));
+                food.setRestaurantId(rs.getInt("restaurant_id"));
+                food.setName(rs.getString("name"));
+                food.setPrice(rs.getDouble("price"));
+                food.setTypeId(rs.getInt("type_id"));
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Exception occured  in the getFood() method: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    freeConnection(conn);
+                }
+            } catch (SQLException e) {
+                System.out.println("Exception occured in the finally section of the getFood() method: " + e.getMessage());
+            }
+        }
+        return food;
+    }
 }
