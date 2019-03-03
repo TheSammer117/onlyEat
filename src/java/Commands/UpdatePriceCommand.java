@@ -21,7 +21,7 @@ public class UpdatePriceCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String forwardToJsp = null;
+         String forwardToJsp = null;
         int restaurantId = 0;
         int foodId = 0;
         double price = 0;
@@ -38,13 +38,16 @@ public class UpdatePriceCommand implements Command {
             session.setAttribute("errorMessage", "Notvaliddata");
         }
 //check if the information is valid
-        if (restaurantId != 0 && foodId != 0 && price != 0) {
+        if (restaurantId != -1 && foodId != -1 && price != -1) {
             //if they are  valid then make change to the database and add message to session
             FoodDao fDao = new FoodDao("delivery");
-            fDao.updatePrice(restaurantId, foodId, price);
-            HttpSession session = request.getSession();
-            session.setAttribute("successMessage", "Pricechangedsuccessfully");
-             forwardToJsp = "restaurantIndex.jsp";
+            int a = 0;
+            a = fDao.updatePrice(restaurantId, foodId, price);
+            if (a != -1) {
+                HttpSession session = request.getSession();
+                session.setAttribute("successMessage", "Pricechangedsuccessfully");
+                forwardToJsp = "restaurantIndex.jsp";
+            }
         } else {
             forwardToJsp = "error.jsp";
             HttpSession session = request.getSession();
@@ -52,4 +55,5 @@ public class UpdatePriceCommand implements Command {
         }
         return forwardToJsp;
     }
+    
 }
