@@ -23,7 +23,6 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         super(databaseName);
     }
 
-  
     @Override
     public ArrayList<Food> getFoodByRestaurantId(int restaurantId) {
         Connection conn = null;
@@ -70,8 +69,8 @@ public class FoodDao extends Dao implements FoodDaoInterface {
     }
 
     @Override
-    public int addAFood(Food f) {
-          Connection con = null;
+    public int addAFood(int restaurantId, String food, double price, int typeId) {
+        Connection con = null;
         PreparedStatement ps = null;
         ResultSet generatedKeys = null;
         int newId = -1;
@@ -79,12 +78,8 @@ public class FoodDao extends Dao implements FoodDaoInterface {
             con = this.getConnection();
             String query = "INSERT INTO food(food_id, restaurant_id, name, price, type_id) VALUES(NUll, ?, ?, ?, ?)";
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            String name = f.getName();
-            int restaurantId = f.getRestaurantId();
-            double price = f.getPrice();
-            int typeId = f.getTypeId();
             ps.setInt(1, restaurantId);
-            ps.setString(2, name);
+            ps.setString(2, food);
             ps.setDouble(3, price);
             ps.setInt(4, typeId);
             ps.executeUpdate();
@@ -111,4 +106,44 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         }
         return newId;
     }
+
+    @Override
+    public int removeFood(int restaurantId, int foordId) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        int rowsAffected = 0;
+
+        try {
+            con = this.getConnection();
+
+            String query = "DELETE FROM food WHERE restaurant_id = ? AND food_id = ?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, restaurantId);
+            ps.setInt(2, foordId);
+
+            rowsAffected = ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("\tA problem occurred during the removeFood method:");
+            System.err.println("\t" + e.getMessage());
+            rowsAffected = 0;
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.err.println("A problem occured when closing down the removeFood method:\n" + e.getMessage());
+            }
+        }
+        return rowsAffected;
+    }
+        public static void main(String [] args){
+            FoodDao f = new FoodDao("delivery");
+            System.out.println(f.removeFood(1, 2));
+         
+                 
+        }
 }

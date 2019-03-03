@@ -6,42 +6,41 @@
 package Commands;
 
 import Daos.FoodDao;
-import Dtos.Food;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author d00189923
+ * @author 82509
  */
-public class AddFoodCommand implements Command {
+public class DeleteFoodCommand implements Command {
+
+    public DeleteFoodCommand() {
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String forwardToJsp = "";
+          String forwardToJsp = "";
         int restaurantId = Integer.parseInt(request.getParameter("restaurantId"));
         if (restaurantId != 0) {
-            String name = request.getParameter("name");
-            double price = 0;
-            int typeId = 0;
+            int foodId = 0;
             try {
-                price = Double.parseDouble(request.getParameter("price"));
-                typeId = Integer.parseInt(request.getParameter("typeId"));
+            
+                foodId = Integer.parseInt(request.getParameter("foodId"));
             } catch (NumberFormatException e) {
                 forwardToJsp = "error.jsp";
                 HttpSession session = request.getSession();
                 session.setAttribute("errorMessage", "Notvaliddata");
             }
 
-            if (name != null && !name.equals("") && price != -1 && restaurantId != 0 && typeId != 0) {
+            if (restaurantId != -1 && foodId != -1 ) {
                 FoodDao fDao = new FoodDao("delivery");
-                int foodId = 0;
-                foodId = fDao.addAFood(restaurantId, name, price, typeId);
-                if (foodId != -1) {
+                int rowsAffected = 0;
+                rowsAffected= fDao.removeFood(restaurantId, foodId);
+                if (rowsAffected != -1) {
                     HttpSession session = request.getSession();
-                    session.setAttribute("successMessage", "foodAddedsuccessfully");
+                    session.setAttribute("successMessage", "foodDeletedSuccessfully");
                     forwardToJsp = "restaurantIndex.jsp";
                 } else {
                     forwardToJsp = "error.jsp";
@@ -59,4 +58,5 @@ public class AddFoodCommand implements Command {
         }
         return forwardToJsp;
     }
+    
 }

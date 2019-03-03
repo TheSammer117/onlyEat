@@ -47,7 +47,7 @@
                     Counties = cDao.getAllCounties();
                     for (int i = 0; i < Counties.size(); i++) {
                 %>
-                <option value="<%=Counties.get(i).getCountyId()%>"><%=Counties.get(i).getName()%> Counties</option>
+                <option value="<%=Counties.get(i).getCountyId()%>"><%=Counties.get(i).getName()%></option>
                 <%
                     }
                 %>

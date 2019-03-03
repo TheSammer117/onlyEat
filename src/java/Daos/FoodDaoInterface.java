@@ -13,6 +13,10 @@ import java.util.ArrayList;
  * @author samiwise
  */
 public interface FoodDaoInterface {
-  public ArrayList<Food> getFoodByRestaurantId(int restaurantId);
-  public int addAFood(Food f);
+
+    public ArrayList<Food> getFoodByRestaurantId(int restaurantId);
+
+    public int addAFood(int restaurantId, String food, double price, int typeId);
+
+    public int removeFood(int restaurantId, int foordId);
 }
