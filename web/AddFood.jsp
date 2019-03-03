@@ -16,30 +16,30 @@
         <title>Add Food Page</title>
     </head>
     <body>
-         <%@ include file = "restaurantHeader.jsp" %>
-        <%           
-            if (loggedInUser != null) {
+        <%@ include file = "restaurantHeader.jsp" %>
+        <%            if (loggedInUser != null) {
         %>
 
         <form action="FrontController" method="post">
             <table>
-                <tr><td>Food Name: </td><td><input name="username" required size=20 type="text" id="name"/> </td></tr>
-                <tr><td>Price: </td><td> <input name="password" required size=50 type="password" id="price"/> </td> </tr>
-                <select name="typeId">
-                    <option>Select</option>
-                    <% ArrayList<FoodType> FoodTypes = new ArrayList();
-                        FoodTypeDao cDao = new FoodTypeDao("delivery");
-                        FoodTypes = cDao.getAllFoodType();
-                        for (int i = 0; i < FoodTypes.size(); i++) {
-                    %>
-                    <option value="<%=FoodTypes.get(i).getTypeId()%>"><%=FoodTypes.get(i).getName()%></option>
-                    <%
-                        }
-                    %>
-                </select>
-            </table>
+                <tr><td>Food Name: </td><td><input name="name" required size=20 type="text"/> </td></tr>
+                <tr><td>Price: </td><td> <input name="price" required size=50  type="text"/> </td> </tr>
+            </table> 
+            <select name="typeId">
+                <option>Select</option>
+                <% ArrayList<FoodType> FoodTypes = new ArrayList();
+                    FoodTypeDao cDao = new FoodTypeDao("delivery");
+                    FoodTypes = cDao.getAllFoodType();
+                    for (int i = 0; i < FoodTypes.size(); i++) {
+                %>
+                <option value="<%=FoodTypes.get(i).getTypeId()%>"><%=FoodTypes.get(i).getName()%></option>
+                <%
+                    }
+                %>
+            </select>
+
+            <input type="hidden" name ="restaurantId" value="<%=loggedInUser.getRestaurantId()%>" />
             <input type="submit" value="Add" />
-           <input type="hidden" name ="restaurantId" value="<%=loggedInUser.getRestaurantId()%>" />
             <input type="hidden" name ="action" value="addFood" />
         </form>
         <%
