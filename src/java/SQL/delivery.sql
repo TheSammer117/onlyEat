@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2019 at 08:42 PM
+-- Generation Time: Mar 03, 2019 at 09:09 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -80,7 +80,7 @@ INSERT INTO `county` (`county_id`, `name`) VALUES
 CREATE TABLE `customer` (
   `customer_id` int(4) NOT NULL,
   `username` varchar(15) NOT NULL,
-  `password` varchar(25) NOT NULL,
+  `password` varchar(250) NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
   `phone` int(15) NOT NULL
@@ -162,7 +162,7 @@ CREATE TABLE `order_detail` (
 CREATE TABLE `restaurant` (
   `restaurant_id` int(4) NOT NULL,
   `username` varchar(15) NOT NULL,
-  `password` varchar(25) NOT NULL,
+  `password` varchar(250) NOT NULL,
   `name` varchar(25) NOT NULL,
   `phone` int(15) NOT NULL,
   `street` varchar(40) NOT NULL,

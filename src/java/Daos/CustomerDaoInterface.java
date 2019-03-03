@@ -14,5 +14,6 @@ import Dtos.Customer;
 public interface CustomerDaoInterface {
     public int registerCustomer(String username, String password, String firstName, String lastName, String phone);
     public Customer getCustomerByUsernamePassword(String username, String password);
+    public String getHashedPasswordByUsername(String username);
     public int updateCustomerProfile(int customerId, String username, String firstName, String lastName, String phone);
 }

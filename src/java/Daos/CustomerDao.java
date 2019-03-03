@@ -142,4 +142,46 @@ public class CustomerDao extends Dao implements CustomerDaoInterface {
         }
         return rowsUpdated;
     }
+
+    @Override
+    public String getHashedPasswordByUsername(String username) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String securedPassword = null;
+        try {
+            con = getConnection();
+            String query = "SELECT password FROM customer WHERE username = ?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                securedPassword = rs.getString("password");
+            }
+        }catch (SQLException ex) {
+            System.out.println("A problem occurred while attempting to select a specific user in the getHashedPasswordByUsername() method");
+            System.out.println("Error: " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    System.out.println("A problem occurred while attempting to close the resultset in the getHashedPasswordByUsername() method");
+                    System.out.println("Error: " + ex.getMessage());
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    System.out.println("A problem occurred while attempting to close the prepared statement in the getHashedPasswordByUsername() method");
+                    System.out.println("Error: " + ex.getMessage());
+                }
+            }
+            if (con != null) {
+                freeConnection(con);
+            }
+        }
+        return securedPassword;
+    }
 }

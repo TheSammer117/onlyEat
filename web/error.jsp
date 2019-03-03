@@ -12,7 +12,6 @@
         <title>Error</title>
     </head>
     <body>
-        <%@include file="internationalisationHeader.jsp" %>
         <%
             Object msg = session.getAttribute("errorMessage");
             String error = (String) msg;
