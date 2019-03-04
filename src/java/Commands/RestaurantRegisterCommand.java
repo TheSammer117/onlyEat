@@ -7,6 +7,9 @@ package Commands;
 
 import Daos.RestaurantDao;
 import Dtos.Restaurant;
+import Hashing.Encrypting;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,6 +23,7 @@ public class RestaurantRegisterCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String forwardToJsp = null;
+        String securedPassword = null;
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -37,13 +41,26 @@ public class RestaurantRegisterCommand implements Command {
         }
         if (username != null && !username.equals("") && !phone.equals("") && password != null && !password.equals("") && name != null && phone != null && street != null&& town != null&& countyId != 0) {
             RestaurantDao rDao = new RestaurantDao("delivery");
-            int newId = rDao.registerRestaurant(username, password, name, phone, street, town ,countyId);
+            try {
+                securedPassword = Encrypting.generatePasswordHash(password);
+            } catch (NoSuchAlgorithmException ex) {
+                String errorMessage = "EncryptError";
+                HttpSession session = request.getSession();
+                session.setAttribute("errorMessage", errorMessage);
+                forwardToJsp = "error.jsp";
+            } catch (InvalidKeySpecException ex) {
+                String errorMessage = "EncryptError";
+                HttpSession session = request.getSession();
+                session.setAttribute("errorMessage", errorMessage);
+                forwardToJsp = "error.jsp";
+            }
+            int newId = rDao.registerRestaurant(username, securedPassword, name, phone, street, town ,countyId);
             if (newId != -1) {
 
-                Restaurant r = rDao.getRestaurantByUsernamePassword(username, password);
+                Restaurant r = rDao.getRestaurantByUsernamePassword(username, securedPassword);
                 HttpSession session = request.getSession();
                 session.setAttribute("successMessage", "AccountCreadtedsuccessfully");
-                session.setAttribute("loggedRestaurant", r);
+                session.setAttribute("loggedInRestaurant", r);
 
                 forwardToJsp = "restaurantIndex.jsp";
             } else {
