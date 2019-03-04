@@ -15,7 +15,7 @@
         <title>My Profile</title>
     </head>
     <body>
-        <%@ include file = "cHeader.jsp" %>
+        <%@ include file = "Includes/cHeader.jsp" %>
         <%            int customerId = 0;
         C_address ca = new C_address();
             try {

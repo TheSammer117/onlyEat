@@ -13,7 +13,8 @@
         <title>Only Eat</title>
     </head>
     <body>
-        <%@ include file = "cHeader.jsp" %>
+        <%@ include file = "Includes/cHeader.jsp" %>
+        <div class="containerDiv">
         <%            String successMessage = (String) session.getAttribute("successMessage");
             if (successMessage != null) {
         %>
@@ -23,5 +24,9 @@
             session.removeAttribute("successMessage");
 
         %>
+        </div>
+       <!-- <aside>
+           <%-- <%@ include file="Includes/asideRestaurantList.jsp" %> --%>
+        </aside>-->
     </body>
 </html>

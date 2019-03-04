@@ -14,7 +14,8 @@
         <title>View Restaurants</title>
     </head>
     <body>
-        <a href="index.jsp">Back to index</a>
+        <%@ include file = "Includes/cHeader.jsp" %>
+       
         <h1>Restaurant List</h1>
         <%
 // //Get Restaurant List from session

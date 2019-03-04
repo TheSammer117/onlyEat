@@ -14,8 +14,13 @@
         <title>Menu</title>
     </head>
     <body>
+        <div class="shoppingCart">
+            
+        </div>
         <a href="index.jsp">Back to index</a>
+        <div class="menu">
         <h1>Menu</h1>
+        
         <%
             
             String idVal = request.getParameter("restId");
@@ -48,15 +53,17 @@
             </tr>
             <% for (Food f : menu) {
             %>
-            <tr>
+            <tr><!--form for adding food to cart-->
             <td><%= f.getName()%></td>
             <td><%= f.getPrice()%></td>
         </tr>
-        <%
+        </table>
+       <%
                 }
             } else {
                 out.println("No menu found. Please try again.");
             }
-        %>
+        %> 
+        </div>
 </body>
 </html>
