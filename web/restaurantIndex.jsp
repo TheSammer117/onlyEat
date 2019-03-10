@@ -4,6 +4,8 @@
     Author     : 82509
 --%>
 
+<%@page import="Dtos.OrderDetail"%>
+<%@page import="Daos.CustomerOrderDao"%>
 <%@page import="Daos.FoodTypeDao"%>
 <%@page import="Dtos.Food"%>
 <%@page import="java.util.ArrayList"%>
@@ -69,49 +71,80 @@
             session.removeAttribute("successMessage");
             FoodDao f1 = new FoodDao("delivery");
             ArrayList<Food> foods = new ArrayList();
+            ArrayList<OrderDetail> od = new ArrayList();
             foods = f1.getFoodByRestaurantId(restaurantId);
             FoodTypeDao ftDao = new FoodTypeDao("delivery");
-            if (foods != null && !foods.isEmpty()) {
+            CustomerOrderDao cdDao = new CustomerOrderDao("delivery");
+        %>
+          <p>Orders :</p>
+        <% if (foods != null && !foods.isEmpty()) {
+
         %>
         <table>
-            <tr>
-                <th>food Id</th>
-                <th>name</th>
-                <th>price</th>
-                <th>type</th>
-            </tr>
-            <%
-                for (int i = 0; i < foods.size(); i++) {
-                    int typeId = foods.get(i).getTypeId();
-                    String name = ftDao.getNameById(typeId);
-            %>
-            <tr>
-                <td><%=foods.get(i).getFoodId()%></td>
-                <td><%=foods.get(i).getName()%></td>
-                <td><%=foods.get(i).getPrice()%></td>
-                <td><%=name%></td>
-                <td>
-                    <form action="updatePrice.jsp" method="post">
-                        <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
-                        <input type="hidden" name ="foodId" value="<%=foods.get(i).getFoodId()%>" />
-                        <input type="submit" value="Update the Price" /> 
-                    </form>
-                </td>
-                <td>
-                    <form action="FrontController" method="post">
-                        <input type="hidden" name ="action" value="deleteFood" />
-                        <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
-                        <input type="hidden" name ="foodId" value="<%=foods.get(i).getFoodId()%>" />
-                        <input type="submit" value="Delete the Food" /> 
-                    </form>
-                </td>                
-            </tr>
-            <%}
-                }%>
-            <form action="AddFood.jsp" method="post">
-              <input type="submit" value="Add the food" /> 
-            </form>
-        </table>
-        <% }%>
-    </body>
+             <tr>
+            <th>food name</th>
+            <th>quatity</th>
+        </tr>
+        <%    for (int i = 0; i < foods.size(); i++) {
+                int foodId = foods.get(i).getFoodId();
+                od = cdDao.getOrderDetails(foodId);
+                for (int a = 0; a < od.size(); a++) {
+                    int orderId = od.get(a).getOrderId();
+                    int foodid = od.get(a).getFoodId();
+                    int quatity = od.get(a).getQuatity();
+                    Food f = new Food();
+                    f = f1.getFood(restaurantId, foodid);
+        %>
+    <td><%=f.getName()%></td>
+    <td><%=quatity%></td>
+</table>
+    <%   }
+
+            }
+        }%>
+    <p>Menu :</p>
+    <%
+        if (foods != null && !foods.isEmpty()) {
+    %>
+    <table>
+        <tr>
+            <th>food Id</th>
+            <th>name</th>
+            <th>price</th>
+            <th>type</th>
+        </tr>
+        <%
+            for (int i = 0; i < foods.size(); i++) {
+                int typeId = foods.get(i).getTypeId();
+                String name = ftDao.getNameById(typeId);
+        %>
+        <tr>
+            <td><%=foods.get(i).getFoodId()%></td>
+            <td><%=foods.get(i).getName()%></td>
+            <td><%=foods.get(i).getPrice()%></td>
+            <td><%=name%></td>
+            <td>
+                <form action="updatePrice.jsp" method="post">
+                    <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
+                    <input type="hidden" name ="foodId" value="<%=foods.get(i).getFoodId()%>" />
+                    <input type="submit" value="Update the Price" /> 
+                </form>
+            </td>
+            <td>
+                <form action="FrontController" method="post">
+                    <input type="hidden" name ="action" value="deleteFood" />
+                    <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
+                    <input type="hidden" name ="foodId" value="<%=foods.get(i).getFoodId()%>" />
+                    <input type="submit" value="Delete the Food" /> 
+                </form>
+            </td>                
+        </tr>
+        <%}
+            }%>
+    </table>
+    <form action="AddFood.jsp" method="post">
+            <input type="submit" value="Add the food" /> 
+        </form>
+    <% }%>
+</body>
 </html>
