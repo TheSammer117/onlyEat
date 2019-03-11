@@ -15,18 +15,18 @@
     <body>
         <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container">
-        <%            String successMessage = (String) session.getAttribute("successMessage");
-            if (successMessage != null) {
-        %>
-        <h3><%=successMessage%></h3>
-        <%
-            }
-            session.removeAttribute("successMessage");
+            <%            String successMessage = (String) session.getAttribute("successMessage");
+                if (successMessage != null) {
+            %>
+            <h3><%=successMessage%></h3>
+            <%
+                }
+                session.removeAttribute("successMessage");
 
-        %>
+            %>
         </div>
-       <!-- <aside>
-           <%-- <%@ include file="Includes/asideRestaurantList.jsp" %> --%>
-        </aside>-->
+        <!-- <aside>
+        <%-- <%@ include file="Includes/asideRestaurantList.jsp" %> --%>
+     </aside>-->
     </body>
 </html>

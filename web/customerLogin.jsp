@@ -24,13 +24,14 @@
             <form class="form-signin" action="FrontController" method="post">
                 <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
                 <table class="table table-borderless">
-                    <tr><td scope="row">Username: <input name="username" required size=20 type="text" id="username"/> </td></tr>
-                    <tr><td scope="row">Password: <input name="password" required size=20 type="password" id="pass"/> </td> </tr>
+                    <tr><td scope="row">Username: <input name="username" required size="20" type="text" id="username"/> </td></tr>
+                    <tr><td scope="row">Password: <input name="password" required size="20" type="password" id="pass"/> </td> </tr>
                     <tr><td scope="row" colspan="2">Remember Me <input name="remember-me" type="checkbox" value="remember-me" id="remember_me"/></td></tr>
                 </table>
                 <input type="submit" class="btn btn-info" value="Login" />
                 <input type="hidden" name ="action" value="customerLogin" />
             </form>
+            <label>New to Only Eat? </label><a href="customerRegister.jsp"><b>Create Account</b></a>
         </div>
     </body>
 </html>

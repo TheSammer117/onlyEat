@@ -12,27 +12,31 @@
         <title>Customer Register</title>
     </head>
     <body>
-        <form action="FrontController" method="post">
-            <table>
-                <tr>
-                    <td>Username: </td><td><input type="text" name="username"  required/></td>
-                </tr>
-                <tr>
-                    <td>Password: </td> <td><input type="password" name="password"  required/></td>
-                </tr>
-                <tr>
-                    <td>First Name: </td> <td><input type="text" name="firstName"  required/></td>
-                </tr>
-                <tr>
-                    <td>Last Name: </td> <td><input type="text" name="lastName"  required/></td>
-                </tr>
-                <tr>
-                    <td>Phone Number: </td> <td><input type="text" name="phone"  required/></td>
-                </tr>
-            </table>
-            <input type="submit" value="register" />
-            <input type="hidden" name ="action" value="customerRegister" />
-        </form>
-        <a href="index.jsp">Back to Index</a>
+        <%@ include file = "Includes/cHeader.jsp" %>
+        <div class="container text-center mt-5" >
+            <form class="form-signin" action="FrontController" method="post">
+                <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
+                <table class="table table-borderless">
+                    <tr>
+                        <td scope="row"><input size="20" type="text"  placeholder="Username" name="username"  required /></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><input size="20" type="password" placeholder="Password" name="password"  required/></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><input size="20" type="text" placeholder="Your First Name" name="firstName"  required/></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><input size="20" type="text" placeholder="Your Last Name" name="lastName"  required/></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><input size="20" type="text" placeholder="Your Phone Number" name="phone"  required/></td>
+                    </tr>
+                </table>
+                <input type="submit" class="btn btn-info" value="Create My Account" />
+                <input type="hidden" name ="action" value="customerRegister" />
+            </form>
+            <label>Already at Only Eat? </label><a href="customerLogin.jsp"><b>Login</b></a>
+        </div>
     </body>
 </html>
