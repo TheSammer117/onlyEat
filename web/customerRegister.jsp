@@ -36,6 +36,7 @@
                 <input type="submit" class="btn btn-info" value="Create My Account" />
                 <input type="hidden" name ="action" value="customerRegister" />
             </form>
+            <br/>
             <label>Already at Only Eat? </label><a href="customerLogin.jsp"><b>Login</b></a>
         </div>
     </body>

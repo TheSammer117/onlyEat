@@ -20,7 +20,7 @@
     </script>
     <body>
         <%@ include file = "Includes/cHeader.jsp" %>
-        <div class="container text-center mt-5" >
+        <div class="container text-center mt-5 " >
             <form class="form-signin" action="FrontController" method="post">
                 <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
                 <table class="table table-borderless">
@@ -31,6 +31,7 @@
                 <input type="submit" class="btn btn-info" value="Login" />
                 <input type="hidden" name ="action" value="customerLogin" />
             </form>
+            <br/>
             <label>New to Only Eat? </label><a href="customerRegister.jsp"><b>Create Account</b></a>
         </div>
     </body>

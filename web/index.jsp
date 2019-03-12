@@ -33,7 +33,7 @@
                 countries = cDao.getAllCounties();
             %>
             <form action="FrontController" method="post">
-                <select class="custom-select mt-10" name="selectedCountyId">
+                <select class="custom-select mt-10" name="selectedCountyId" required>
                     <option selected>Select a county</option>
                     <%
                         for (int i = 0; i < countries.size(); i++) {

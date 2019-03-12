@@ -12,16 +12,19 @@
         <title>Error</title>
     </head>
     <body>
-        <%
-            Object msg = session.getAttribute("errorMessage");
-            String error = (String) msg;
-            if (error != null) {
+        <%@ include file = "Includes/cHeader.jsp" %>
+        <div class="container text-center mt-5 " >
+            <h2>Something Went Wrong</h2>
+            <%                Object msg = session.getAttribute("errorMessage");
+                String error = (String) msg;
+                if (error != null) {
 
-        %>
-        <div> <%= error %> </div>
-        <%
-            }
-            session.removeAttribute("errorMessage");
-        %> 
+            %>
+            <div> <%= error%> </div>
+            <%
+                }
+                session.removeAttribute("errorMessage");
+            %> 
+        </div>
     </body>
 </html>
