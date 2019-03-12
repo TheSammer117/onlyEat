@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -214,5 +216,48 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
             }
         }
         return securedPassword;
+    }
+
+    @Override
+    public ArrayList<Restaurant> getRestaurantsByCountyId(int countyId) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Restaurant> restaurants = new ArrayList();
+        try {
+            con = getConnection();
+            String query = "SELECT * FROM restaurant WHERE county_id=?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, countyId);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Restaurant r = new Restaurant(rs.getInt("restaurant_id"),
+                rs.getString("username"),
+                rs.getString("password"),
+                rs.getString("name"),
+                rs.getString("phone"),
+                rs.getString("street"),
+                rs.getString("town"),
+                rs.getInt("county_id"));
+               restaurants.add(r);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Exception occured in the getRestaurantsByCountyId() method: " + ex.getMessage());
+        }finally{
+            try{
+                if(rs != null){
+                    rs.close();
+                }
+                if(ps != null){
+                    ps.close();
+                }
+                if(con != null){
+                    freeConnection(con);
+                }
+            } catch(SQLException e){
+                System.out.println("Exception occured in the finally section of the getAllRestaurants() method, " + e.getMessage());
+            }
+        }
+        return restaurants;
     }
 }

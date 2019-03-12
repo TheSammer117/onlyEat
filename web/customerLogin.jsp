@@ -26,7 +26,7 @@
                 <table class="table table-borderless">
                     <tr><td scope="row">Username: <input name="username" required size="20" type="text" id="username"/> </td></tr>
                     <tr><td scope="row">Password: <input name="password" required size="20" type="password" id="pass"/> </td> </tr>
-                    <tr><td scope="row" colspan="2">Remember Me <input name="remember-me" type="checkbox" value="remember-me" id="remember_me"/></td></tr>
+                    <tr><td scope="row" colspan="2">Remember Me <input name="remember-me" type="checkbox" value="remember-me" id="remember_me" /></td></tr>
                 </table>
                 <input type="submit" class="btn btn-info" value="Login" />
                 <input type="hidden" name ="action" value="customerLogin" />

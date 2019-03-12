@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="Styles/bootstrap-4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="Styles/bootstrap-4.3.1/css/custom.css">
+        <link rel="stylesheet" href="Styles/main.css">
     </head>
     <body>
         <div class="container">

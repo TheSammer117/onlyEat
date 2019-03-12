@@ -32,7 +32,7 @@ public class CommandFactory {
                     c = new RestaurantRegisterCommand();
                     break;
                 case "viewRestaurants":
-                    c = new ViewAllRestaurantsCommand();
+                    c = new ViewRestaurantsCommand();
                     break;
                 case "saveCustomerProfile":
                     c = new SaveCustomerProfileCommand();

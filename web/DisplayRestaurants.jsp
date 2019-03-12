@@ -15,14 +15,10 @@
     </head>
     <body>
         <%@ include file = "Includes/cHeader.jsp" %>
-       
+
         <h1>Restaurant List</h1>
-        <%
-// //Get Restaurant List from session
-   //         ArrayList<Restaurant> restaurants = (ArrayList<Restaurant>) session.getAttribute("restaurantList");
-            // If there is a restaurant list to use in the session (and it's not empty)
-            RestaurantDao rDao = new RestaurantDao("delivery");
-ArrayList<Restaurant> restaurants = rDao.getAllRestaurants();
+        <%// //Get Restaurant List from session
+            ArrayList<Restaurant> restaurants = (ArrayList<Restaurant>) session.getAttribute("restaurantList");
             if (restaurants != null && !restaurants.isEmpty()) {
 
 
@@ -45,7 +41,7 @@ ArrayList<Restaurant> restaurants = rDao.getAllRestaurants();
             <%
                     }
                 } else {
-                out.println("No Restaurants found. Please try again.");
+                    out.println("No Restaurants found. Please try again.");
                 }
             %>
         </table>

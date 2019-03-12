@@ -4,6 +4,9 @@
     Author     : zbo97
 --%>
 
+<%@page import="Dtos.County"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Daos.CountyDao"%>
 <%@page import="Dtos.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,7 +17,7 @@
     </head>
     <body>
         <%@ include file = "Includes/cHeader.jsp" %>
-        <div class="container">
+        <div class="container text-center">
             <%            String successMessage = (String) session.getAttribute("successMessage");
                 if (successMessage != null) {
             %>
@@ -24,6 +27,26 @@
                 session.removeAttribute("successMessage");
 
             %>
+
+            <%                CountyDao cDao = new CountyDao("delivery");
+                ArrayList<County> countries = new ArrayList();
+                countries = cDao.getAllCounties();
+            %>
+            <form action="FrontController" method="post">
+                <select class="custom-select mt-10" name="selectedCountyId">
+                    <option selected>Select a county</option>
+                    <%
+                        for (int i = 0; i < countries.size(); i++) {
+                    %>
+                    <option value="<%=countries.get(i).getCountyId()%>"><%=countries.get(i).getName()%></option>
+
+                    <%
+                        }
+                    %>
+                </select>
+                <input type="submit" class="btn btn-info  mt-5" value="Find restaurants" />
+                <input type="hidden" name ="action" value="viewRestaurants" />
+            </form>
         </div>
         <!-- <aside>
         <%-- <%@ include file="Includes/asideRestaurantList.jsp" %> --%>
