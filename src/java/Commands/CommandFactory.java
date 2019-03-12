@@ -52,6 +52,9 @@ public class CommandFactory {
                 case "logout":
                     c = new LogoutCommand();
                     break;
+                case "restaurantLogout":
+                    c = new RestaurantLogoutCommand();
+                    break;
                 default:
                     c = new NoActionSuppliedCommand();
                     break;

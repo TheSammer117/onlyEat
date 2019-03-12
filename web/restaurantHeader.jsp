@@ -24,7 +24,7 @@
         <%             Restaurant loggedInUser = (Restaurant) session.getAttribute("loggedInRestaurant");
             if (loggedInUser != null) {
         %>
-        <a href="FrontController?action=logout">Logout</a>
+        <a href="FrontController?action=restaurantLogout">Logout</a>
         <%
         } else {
         %>

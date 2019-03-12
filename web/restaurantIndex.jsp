@@ -4,6 +4,8 @@
     Author     : 82509
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Dtos.OrderDetail"%>
 <%@page import="Daos.CustomerOrderDao"%>
 <%@page import="Daos.FoodTypeDao"%>
@@ -24,43 +26,8 @@
     </script>
     <body>
 
-        <%             Restaurant loggedInUser = (Restaurant) session.getAttribute("loggedInRestaurant");
-            if (loggedInUser != null) {
-        %>
-        <a href="FrontController?action=logout">Logout</a>
-        <%
-        } else {
-        %>
-        <div>
-            <p>Please login here</p>
-            <%
-                String sessionExpired = (String) session.getAttribute("sessionExpired");
-                if (sessionExpired != null) {
-                    out.println("<b>" + sessionExpired + "</b>");
-                    session.removeAttribute("sessionExpired");
-
-                }
-            %>
-            <form action="FrontController" method="post">
-                <table>
-                    <tr><td>Username: </td><td><input name="username" required size=20 type="text" id="username"/> </td></tr>
-                    <tr><td>Password: </td><td> <input name="password" required size=50 type="password" id="pass"/> </td> </tr>
-                    <tr><td>Remember me</td><td><input name="remember-me" type="checkbox" value="remember-me" id="remember_me"/></td></tr>
-                </table>
-                <input type="submit" value="Login" />
-                <input type="hidden" name ="action" value="restaurantLogin" />
-
-            </form>
-            <a href="restaurantRegister.jsp">Register</a>
-        </div>
-        <%
-            }
-        %>
-
-
-
-        <%
-            if (loggedInUser != null) {
+        <%@ include file = "restaurantHeader.jsp" %>
+        <%            if (loggedInUser != null) {
                 int restaurantId = loggedInUser.getRestaurantId();
                 String successMessage = (String) session.getAttribute("successMessage");
                 if (successMessage != null) {
@@ -75,76 +42,40 @@
             foods = f1.getFoodByRestaurantId(restaurantId);
             FoodTypeDao ftDao = new FoodTypeDao("delivery");
             CustomerOrderDao cdDao = new CustomerOrderDao("delivery");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         %>
-          <p>Orders :</p>
+
+        <a href="restaurantMenu.jsp?RestaurantId=<%=restaurantId%>">View My Menu</a>
+        <p>Orders :</p>
         <% if (foods != null && !foods.isEmpty()) {
 
         %>
         <table>
-             <tr>
-            <th>food name</th>
-            <th>quatity</th>
-        </tr>
-        <%    for (int i = 0; i < foods.size(); i++) {
-                int foodId = foods.get(i).getFoodId();
-                od = cdDao.getOrderDetails(foodId);
-                for (int a = 0; a < od.size(); a++) {
-                    int orderId = od.get(a).getOrderId();
-                    int foodid = od.get(a).getFoodId();
-                    int quatity = od.get(a).getQuatity();
-                    Food f = new Food();
-                    f = f1.getFood(restaurantId, foodid);
-        %>
-    <td><%=f.getName()%></td>
-    <td><%=quatity%></td>
-</table>
-    <%   }
+            <tr>
+                <th>food name</th>
+                <th>quatity</th>
+                <th>Date</th>
+            </tr>
+            <%    for (int i = 0; i < foods.size(); i++) {
+                    int foodId = foods.get(i).getFoodId();
+                    od = cdDao.getOrderDetails(foodId);
+                    for (int a = 0; a < od.size(); a++) {
+                        int orderId = od.get(a).getOrderId();
+                        int foodid = od.get(a).getFoodId();
+                        int quatity = od.get(a).getQuatity();
+                        Food f = new Food();
+                        f = f1.getFood(restaurantId, foodid);
+            %>
+            <td><%=f.getName()%></td>
+            <td><%=quatity%></td>
 
-            }
-        }%>
-    <p>Menu :</p>
-    <%
-        if (foods != null && !foods.isEmpty()) {
-    %>
-    <table>
-        <tr>
-            <th>food Id</th>
-            <th>name</th>
-            <th>price</th>
-            <th>type</th>
-        </tr>
-        <%
-            for (int i = 0; i < foods.size(); i++) {
-                int typeId = foods.get(i).getTypeId();
-                String name = ftDao.getNameById(typeId);
-        %>
-        <tr>
-            <td><%=foods.get(i).getFoodId()%></td>
-            <td><%=foods.get(i).getName()%></td>
-            <td><%=foods.get(i).getPrice()%></td>
-            <td><%=name%></td>
-            <td>
-                <form action="updatePrice.jsp" method="post">
-                    <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
-                    <input type="hidden" name ="foodId" value="<%=foods.get(i).getFoodId()%>" />
-                    <input type="submit" value="Update the Price" /> 
-                </form>
-            </td>
-            <td>
-                <form action="FrontController" method="post">
-                    <input type="hidden" name ="action" value="deleteFood" />
-                    <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
-                    <input type="hidden" name ="foodId" value="<%=foods.get(i).getFoodId()%>" />
-                    <input type="submit" value="Delete the Food" /> 
-                </form>
-            </td>                
-        </tr>
-        <%}
-            }%>
-    </table>
-    <form action="AddFood.jsp" method="post">
-            <input type="submit" value="Add the food" /> 
-        </form>
-    <% }%>
-</body>
+
+            <%   }
+
+                    }
+                }%>
+            <td><%=sdf.format(new Date())%></td>
+        </table>
+        <% }%>
+    </body>
 </html>
