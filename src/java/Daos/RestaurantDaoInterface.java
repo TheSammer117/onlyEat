@@ -18,4 +18,5 @@ public interface RestaurantDaoInterface {
      public Restaurant getRestaurantByUsernamePassword(String username, String password);
      public String getHashedPasswordByUsername(String username);
      public ArrayList<Restaurant> getAllRestaurants();
+     public ArrayList<Restaurant> getRestaurantsByCountyId(int countyId);
 }
