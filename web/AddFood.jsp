@@ -16,7 +16,7 @@
         <title>Add Food Page</title>
     </head>
     <body>
-        <%@ include file = "restaurantHeader.jsp" %>
+      <%@ include file = "Includes/rHeader.jsp" %>
         <%            if (loggedInUser != null) {
         %>
 

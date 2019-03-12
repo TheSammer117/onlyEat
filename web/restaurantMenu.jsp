@@ -4,6 +4,10 @@
     Author     : 82509
 --%>
 
+<%@page import="Dtos.Food"%>
+<%@page import="Daos.FoodTypeDao"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Daos.FoodDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,8 +15,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu Page</title>
     </head>
+
     <body>
-        <%@ include file = "restaurantHeader.jsp" %>
+      <%@ include file = "Includes/rHeader.jsp" %>
         <%            int restaurantId = loggedInUser.getRestaurantId();
             FoodDao f1 = new FoodDao("delivery");
             ArrayList<Food> foods = new ArrayList();

@@ -13,9 +13,9 @@
         <title>Update Price Page</title>
     </head>
     <body>
-        <%@ include file = "restaurantHeader.jsp" %>
+       <%@ include file = "Includes/rHeader.jsp" %>
         <%            int restaurantId = 0;
-                      int foodId = 0;
+            int foodId = 0;
             try {
                 restaurantId = Integer.parseInt(request.getParameter("restaurantId"));
                 foodId = Integer.parseInt(request.getParameter("foodId"));
@@ -44,7 +44,7 @@
 
                 <input type="hidden" name ="action" value="updatePrice" />
                 <input type="hidden" name ="restaurantId" value="<%=loggedInUser.getRestaurantId()%>" />
-                 <input type="hidden" name ="foodId" value="<%=f.getFoodId()%>" />
+                <input type="hidden" name ="foodId" value="<%=f.getFoodId()%>" />
                 <input type="submit" value="update the price" />
             </form>
         </div>

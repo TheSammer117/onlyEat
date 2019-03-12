@@ -15,7 +15,7 @@
         <title>Register</title>
     </head>
     <body>
-
+        <%@ include file = "Includes/rHeader.jsp" %>
         <form action="FrontController" method="post">
             <table>
                 <tr>

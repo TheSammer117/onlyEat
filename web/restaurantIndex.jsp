@@ -26,7 +26,7 @@
     </script>
     <body>
 
-        <%@ include file = "restaurantHeader.jsp" %>
+        <%@ include file = "Includes/rHeader.jsp" %>
         <%            if (loggedInUser != null) {
                 int restaurantId = loggedInUser.getRestaurantId();
                 String successMessage = (String) session.getAttribute("successMessage");
@@ -45,7 +45,7 @@
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         %>
 
-        <a href="restaurantMenu.jsp?RestaurantId=<%=restaurantId%>">View My Menu</a>
+
         <p>Orders :</p>
         <% if (foods != null && !foods.isEmpty()) {
 
