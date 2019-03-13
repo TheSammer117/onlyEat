@@ -44,6 +44,15 @@ public class Restaurant {
         this.town = town;
         this.countyId = countyId;
 
+    }  public Restaurant( String username, String password, String name, String phone, String street, String town, int countyId) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.street = street;
+        this.town = town;
+        this.countyId = countyId;
+
     }
 
     public int getRestaurantId() {
