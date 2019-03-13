@@ -19,23 +19,25 @@ import static org.junit.Assert.*;
  * @author d00189923
  */
 public class OrderDetailDaoTest {
-        private OrderDetailDao orderDetailDao;
+
+    private OrderDetailDao orderDetailDao;
+
     public OrderDetailDaoTest() {
-    orderDetailDao = new OrderDetailDao("delivery");
+        orderDetailDao = new OrderDetailDao("delivery");
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -61,10 +63,8 @@ public class OrderDetailDaoTest {
     public void testGetFoodDetails() {
         System.out.println("getFoodDetails");
         int foodId = 77;
-
-        ArrayList<OrderDetail> expResult = null;
         ArrayList<OrderDetail> result = orderDetailDao.getFoodDetails(foodId);
-        assertEquals(expResult, result);
+        assertTrue((result.isEmpty()));
 
     }
 
@@ -87,13 +87,10 @@ public class OrderDetailDaoTest {
     @Test
     public void testGetFoodIdByOrder() {
         System.out.println("getFoodIdByOrder");
-        int orderId = 0;
-        OrderDetailDao instance = null;
-        ArrayList<Integer> expResult = null;
-        ArrayList<Integer> result = instance.getFoodIdByOrder(orderId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int orderId = 77;
+        ArrayList<Integer> result = orderDetailDao.getFoodIdByOrder(orderId);
+        assertTrue((result.isEmpty()));
+
     }
-    
+
 }

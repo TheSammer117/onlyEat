@@ -141,17 +141,12 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         return rowsAffected;
     }
 
-    public static void main(String[] args) {
-        FoodDao f = new FoodDao("delivery");
-        System.out.println(f.removeFood(1, 2));
-
-    }
 
     @Override
     public int updatePrice(int restaurantId, int foordId, double price) {
         Connection con = null;
         PreparedStatement ps = null;
-        int returnValue = -1;
+        int rowsUpdated = 0;
         try {
             con = getConnection();
 
@@ -161,8 +156,7 @@ public class FoodDao extends Dao implements FoodDaoInterface {
             ps.setDouble(1, price);
             ps.setInt(2, foordId);
             ps.setInt(3, restaurantId);
-            ps.executeUpdate();
-            returnValue = 1;
+            rowsUpdated = ps.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println("Exception occured in the updatePrice() method: " + e.getMessage());
@@ -179,7 +173,7 @@ public class FoodDao extends Dao implements FoodDaoInterface {
                 e.getMessage();
             }
         }
-        return returnValue;
+        return rowsUpdated;
     }
 
     @Override

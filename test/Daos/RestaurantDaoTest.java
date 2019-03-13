@@ -87,16 +87,6 @@ public class RestaurantDaoTest {
 
     }
 
-    @Test
-    public void testGetRestaurantByUsernamePassword2() {
-        System.out.println("getRestaurantByUsernamePassword");
-        String username = "1234";
-        String password = "1234";
-        Restaurant expResult = new Restaurant("1234", "1234", "zzh", "12345678", "Dublin", "Dundalk", 1);
-        Restaurant result = restaurantDao.getRestaurantByUsernamePassword(username, password);
-        assertEquals(expResult, result);
-
-    }
 
     /**
      * Test of getAllRestaurants method, of class RestaurantDao.
@@ -117,8 +107,8 @@ public class RestaurantDaoTest {
     @Test
     public void testGetHashedPasswordByUsername() {
         System.out.println("getHashedPasswordByUsername");
-        String username = "1234";
-        String expResult = "1234";
+        String username = "1234567";
+        String expResult = null;
         String result = restaurantDao.getHashedPasswordByUsername(username);
         assertEquals(expResult, result);
     }
@@ -129,12 +119,10 @@ public class RestaurantDaoTest {
     @Test
     public void testGetRestaurantsByCountyId() {
         System.out.println("getRestaurantsByCountyId");
-        int countyId = 1;
-         Restaurant r1 = new Restaurant("1234", "1234", "zzh", "12345678", "Dublin", "Dundalk", 1);
-        ArrayList<Restaurant> expResult = new ArrayList();
-        expResult.add(r1);
+        int countyId = 100;
+       
         ArrayList<Restaurant> result = restaurantDao.getRestaurantsByCountyId(countyId);
-        assertEquals(expResult, result);
+        assertTrue((result.isEmpty()));
 
     }
 
