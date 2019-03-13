@@ -76,7 +76,7 @@
             %>
             <img width="150" height="150" class="mb-4 mt-4" alt="logo" src="Images/Logo.png" />
             <h2>Welcome!</h2>
-            <p>Please login to manage your restaurant</p>
+            <p>Please <a  href="restaurantLogin.jsp">Sign In</a> to manage your restaurant</p>
 
 
             <%

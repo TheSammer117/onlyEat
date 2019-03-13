@@ -37,7 +37,9 @@
                 <input type="hidden" name ="action" value="customerRegister" />
             </form>
             <br/>
-            <label>Already at Only Eat? </label><a href="customerLogin.jsp"><b>Login</b></a>
+            <label>Already at Only Eat? </label><a href="customerLogin.jsp"><b> Login</b></a>
+            <br/>
+            <label>Create a Account for Your Restaurant?</label><a href="restaurantRegister.jsp"><b> Create Account </b></a>
         </div>
         <%@ include file="Includes/footer.jsp" %> 
     </body>

@@ -32,8 +32,11 @@
                         <li class="nav-item active ml-lg-5">
                             <a class="nav-link" href="restaurantIndex.jsp">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item   my-2 my-lg-0">
-                            <a class="nav-link" href="FrontController?action=logout">Logout</a>
+                        <li class="nav-item active ml-2">
+                            <a class="nav-link" href="restaurantMenu.jsp">View My Restaurant Menu</a>
+                        </li>
+                        <li class="nav-item  ml-lg-5">
+                            <a class="nav-link" href="FrontController?action=restaurantLogout">Logout</a>
                         </li>
                     </ul>
                 </div>
