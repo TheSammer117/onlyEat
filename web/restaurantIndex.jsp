@@ -42,16 +42,19 @@
             %>
 
 
-            <p>Orders :</p>
+
             <% if (foods != null && !foods.isEmpty()) {
 
             %>
-            <table>
-                <tr>
-                    <th>food name</th>
-                    <th>quatity</th>
-                    <th>Date</th>
-                </tr>
+            <h2 class="text-left">Orders :</h2>
+            <table class="table table-hover table-primary ">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
                 <%    for (int i = 0; i < foods.size(); i++) {
                         int foodId = foods.get(i).getFoodId();
                         od = cdDao.getOrderDetails(foodId);
@@ -62,16 +65,25 @@
                             Food f = new Food();
                             f = f1.getFood(restaurantId, foodid);
                 %>
-                <td><%=f.getName()%></td>
-                <td><%=quatity%></td>
-
-
+                <tbody>
+                    <tr>
+                        <td><%=f.getName()%></td>
+                        <td><%=quatity%></td>
+                        <td><%=sdf.format(new Date())%></td>
+                    </tr>
+                </tbody>
                 <%   }
 
-                        }
                     }%>
-                <td><%=sdf.format(new Date())%></td>
             </table>
+            <%
+            } else {
+            %>
+            <p class="mt-4">You have not got any order yet!!</p>
+            <%
+                    }%>
+
+
             <% } else {
             %>
             <img width="150" height="150" class="mb-4 mt-4" alt="logo" src="Images/Logo.png" />
