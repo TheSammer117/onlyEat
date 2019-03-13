@@ -16,7 +16,7 @@
     </head>
     <body>
         <%@ include file = "Includes/rHeader.jsp" %>
-        <div class="container text-center mt-5" >
+        <div class="container text-center mt-2" >
             <form class="form-signin" action="FrontController" method="post">
                 <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
                 <table class="table table-borderless">
