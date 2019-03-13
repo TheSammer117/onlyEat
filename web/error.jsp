@@ -14,6 +14,7 @@
     <body>
         <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container text-center mt-5 " >
+            <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
             <h2>Something Went Wrong</h2>
             <%                Object msg = session.getAttribute("errorMessage");
                 String error = (String) msg;
@@ -26,5 +27,6 @@
                 session.removeAttribute("errorMessage");
             %> 
         </div>
+        <%@ include file="Includes/footer.jsp" %> 
     </body>
 </html>

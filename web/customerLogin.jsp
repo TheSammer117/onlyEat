@@ -34,5 +34,6 @@
             <br/>
             <label>New to Only Eat? </label><a href="customerRegister.jsp"><b>Create Account</b></a>
         </div>
+        <%@ include file="Includes/footer.jsp" %> 
     </body>
 </html>

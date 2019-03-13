@@ -39,5 +39,6 @@
             <br/>
             <label>Already at Only Eat? </label><a href="customerLogin.jsp"><b>Login</b></a>
         </div>
+        <%@ include file="Includes/footer.jsp" %> 
     </body>
 </html>

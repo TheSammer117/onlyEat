@@ -13,39 +13,39 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Restaurants</title>
     </head>
+
     <body>
         <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container text-center mt-5 " >
+            
 
-            <h1>Restaurant List</h1>
             <%// //Get Restaurant List from session
                 ArrayList<Restaurant> restaurants = (ArrayList<Restaurant>) session.getAttribute("restaurantList");
                 if (restaurants != null && !restaurants.isEmpty()) {
 
 
             %>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Street</th>
-                    <th>Town</th>
-                </tr>
+            <h1 class="text-left">Takeaway in <%=(String) session.getAttribute("countyName")%></h1>
+            <table class="table table-hover table-primary ">
                 <%                for (Restaurant r : restaurants) {
                 %>
                 <tr>
-                    <td><a href="ViewMenu.jsp?restId=<%=r.getRestaurantId()%>"><%=r.getName()%></td>
-                    <td><%=r.getPhone()%></td>
-                    <td><%=r.getStreet()%></td>
-                    <td><%=r.getTown()%></td>
+                    <td >       <a class="restaurantLink" href="ViewMenu.jsp?restId=<%=r.getRestaurantId()%>">    <%=r.getName()%>    </a>    </td>
+                    <td>Phone Number: <%=r.getPhone()%><br/>
+                        Restaurant Location: <%=r.getStreet()%>, <%=r.getTown()%>
+                    </td>
                 </tr>
                 <%
-                        }
-                    } else {
-                        out.println("No Restaurants found. Please try again.");
+                    }
+                } else {
+                %>
+                <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
+                <%
+                        out.println("Sorry, our service currently is not available in your area.");
                     }
                 %>
             </table>
         </div>
+            <%@ include file="Includes/footer.jsp" %> 
     </body>
 </html>

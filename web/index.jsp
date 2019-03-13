@@ -48,8 +48,8 @@
                 <input type="hidden" name ="action" value="viewRestaurants" />
             </form>
         </div>
-        <!-- <aside>
-        <%-- <%@ include file="Includes/asideRestaurantList.jsp" %> --%>
-     </aside>-->
+
+        <%@ include file="Includes/footer.jsp" %> 
+
     </body>
 </html>

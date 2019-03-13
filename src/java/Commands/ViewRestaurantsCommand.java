@@ -5,6 +5,7 @@
  */
 package Commands;
 
+import Daos.CountyDao;
 import Daos.RestaurantDao;
 import Dtos.Restaurant;
 import java.util.ArrayList;
@@ -34,9 +35,13 @@ public class ViewRestaurantsCommand implements Command {
         if (countyId > 0) {
             RestaurantDao rDao = new RestaurantDao("delivery");
             ArrayList<Restaurant> rList = rDao.getRestaurantsByCountyId(countyId);
+            CountyDao cDao = new CountyDao("delivery");
+            
+            String countyName = cDao.getCountyById(countyId).getName();
             HttpSession session = request.getSession();
 
             session.setAttribute("restaurantList", rList);
+            session.setAttribute("countyName", countyName);
 
             forwardToJsp = "DisplayRestaurants.jsp";
         }else{

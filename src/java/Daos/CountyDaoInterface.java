@@ -15,5 +15,6 @@ import java.util.ArrayList;
 public interface CountyDaoInterface {
     
      public ArrayList<County> getAllCounties();
+     public County getCountyById(int countyId);
     
 }

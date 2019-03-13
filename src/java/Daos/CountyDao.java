@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -58,6 +60,42 @@ public class CountyDao extends Dao implements CountyDaoInterface {
             }
         }
         return CountyArr;
+    }
+
+    @Override
+    public County getCountyById(int countyId) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        County c = new County();
+        
+        try {
+            con = getConnection();
+            String query = "SELECT * FROM county WHERE county_id=?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, countyId);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                c.setName(rs.getString("name"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Exception occured in the getCountyById() method: " + ex.getMessage());
+        }finally{
+            try{
+                if(rs != null){
+                    rs.close();
+                }
+                if(ps != null){
+                    ps.close();
+                }
+                if(con != null){
+                    freeConnection(con);
+                }
+            } catch(SQLException e){
+                System.out.println("Exception occured in the finally section of the getCountyById() method, " + e.getMessage());
+            }
+        }
+        return c;
     }
     
 }
