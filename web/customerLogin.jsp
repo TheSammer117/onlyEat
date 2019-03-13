@@ -15,9 +15,7 @@
         <link rel="stylesheet" href="Styles/bootstrap-4.3.1/css/custom.css">
     </head>
     <script src="Jquery/jquery-3.3.1.js"></script>
-    <script src="Jquery/rememberMe.js">
-
-    </script>
+    <script src="Jquery/rememberMe.js"></script>
     <body>
         <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container text-center mt-5 " >

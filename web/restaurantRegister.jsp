@@ -16,46 +16,50 @@
     </head>
     <body>
         <%@ include file = "Includes/rHeader.jsp" %>
-        <form action="FrontController" method="post">
-            <table>
-                <tr>
-                    <td>Username: </td> <td><input type="text" name="username"  required/></td>
-                </tr>
-                <tr>
-                    <td>Password: </td> <td><input type="password" name="password"  required/></td>
-                </tr>
-                <tr>
-                    <td>Name: </td> <td><input type="text" name="name"  required/></td>
-                </tr>
-                <tr>
-                    <td>Phone Number: </td> <td><input type="text" name="phone"  required/></td>
-                </tr>
-                <tr>
-                    <td>Phone Number: </td> <td><input type="text" name="phone"  required/></td>
-                </tr>
-                <tr>
-                    <td>Street: </td> <td><input type="text" name="street"  required/></td>
-                </tr>
-                <tr>
-                    <td>Town: </td> <td><input type="text" name="town"  required/></td>
-                </tr>
-            </table>
-            <select name="countyId">
-                <option>Select</option>
-                <% ArrayList<County> Counties = new ArrayList();
-                    CountyDao cDao = new CountyDao("delivery");
-                    Counties = cDao.getAllCounties();
-                    for (int i = 0; i < Counties.size(); i++) {
-                %>
-                <option value="<%=Counties.get(i).getCountyId()%>"><%=Counties.get(i).getName()%></option>
-                <%
-                    }
-                %>
-            </select>
-            <input type="submit" value="RestaurantRegister" />
-            <input type="hidden" name ="action" value="restaurantRegister" />
-        </form>
+        <div class="container text-center mt-5" >
+            <form class="form-signin" action="FrontController" method="post">
+                <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
+                <table class="table table-borderless">
+                    <tr>
+                        <td scope="row"><input size="20" type="text" placeholder="Username" name="username"  required/></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><input type="password" placeholder="Password" name="password"  required/></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><input type="text" placeholder="Restaurant Name" name="name"  required/></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><input type="text" placeholder="Phone Number" name="phone"  required/></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><input type="text" placeholder="Street" name="street"  required/></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><input type="text" placeholder="Town" name="town"  required/></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">
+                            <select name="countyId">
+                                <option>Select a county</option>
+                                <% ArrayList<County> Counties = new ArrayList();
+                                    CountyDao cDao = new CountyDao("delivery");
+                                    Counties = cDao.getAllCounties();
+                                    for (int i = 0; i < Counties.size(); i++) {
+                                %>
+                                <option value="<%=Counties.get(i).getCountyId()%>"><%=Counties.get(i).getName()%></option>
+                                <%
+                                    }
+                                %>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
 
-
+                <input type="submit" class="btn btn-info" value="Create My Account" />
+                <input type="hidden" name ="action" value="restaurantRegister" />
+            </form>
+        </div>
+        <%@ include file="Includes/footer.jsp" %> 
     </body>
 </html>
