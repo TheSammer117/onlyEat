@@ -30,7 +30,10 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active ml-lg-5">
-                            <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="index.jsp"> Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item ml-lg-5">
+                            <a class="nav-link" href="customerProfile.jsp?customerId=<%=loggedInUser.getCustomerId() %>"> My deliver Information </a>
                         </li>
                         <li class="nav-item   my-2 my-lg-0">
                             <a class="nav-link" href="FrontController?action=logout">Logout</a>

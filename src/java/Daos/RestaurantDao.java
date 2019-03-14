@@ -131,45 +131,45 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
         }
         return r;
     }
-    
+
     @Override
-    public ArrayList<Restaurant> getAllRestaurants(){
+    public ArrayList<Restaurant> getAllRestaurants() {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Restaurant> restaurants = new ArrayList<>();
-        
-        try{
+
+        try {
             conn = getConnection();
             String query = "SELECT * FROM restaurant";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            
-            while (rs.next()){
+
+            while (rs.next()) {
                 Restaurant r = new Restaurant(rs.getInt("restaurant_id"),
-                rs.getString("username"),
-                rs.getString("password"),
-                rs.getString("name"),
-                rs.getString("phone"),
-                rs.getString("street"),
-                rs.getString("town"),
-                rs.getInt("county_id"));
-               restaurants.add(r);
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("name"),
+                        rs.getString("phone"),
+                        rs.getString("street"),
+                        rs.getString("town"),
+                        rs.getInt("county_id"));
+                restaurants.add(r);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("Exception occured in the getAllRestaurants() method: " + e.getMessage());
-        } finally{
-            try{
-                if(rs != null){
+        } finally {
+            try {
+                if (rs != null) {
                     rs.close();
                 }
-                if(ps != null){
+                if (ps != null) {
                     ps.close();
                 }
-                if(conn != null){
+                if (conn != null) {
                     freeConnection(conn);
                 }
-            } catch(SQLException e){
+            } catch (SQLException e) {
                 System.out.println("Exception occured in the finally section of the getAllRestaurants() method, " + e.getMessage());
             }
         }
@@ -191,7 +191,7 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
             if (rs.next()) {
                 securedPassword = rs.getString("password");
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("A problem occurred while attempting to select a specific user in the getHashedPasswordByUsername() method");
             System.out.println("Error: " + ex.getMessage());
         } finally {
@@ -223,6 +223,14 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        int id;
+        String username;
+        String password;
+        String name;
+        String phone;
+        String street;
+        String town;
+
         ArrayList<Restaurant> restaurants = new ArrayList();
         try {
             con = getConnection();
@@ -230,31 +238,32 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
             ps = con.prepareStatement(query);
             ps.setInt(1, countyId);
             rs = ps.executeQuery();
-            if (rs.next()) {
-                Restaurant r = new Restaurant(rs.getInt("restaurant_id"),
-                rs.getString("username"),
-                rs.getString("password"),
-                rs.getString("name"),
-                rs.getString("phone"),
-                rs.getString("street"),
-                rs.getString("town"),
-                rs.getInt("county_id"));
-               restaurants.add(r);
+            while (rs.next()) {
+                id = rs.getInt("restaurant_id");
+                username = rs.getString("username");
+                password = rs.getString("password");
+                name = rs.getString("name");
+                phone = rs.getString("phone");
+                street = rs.getString("street");
+                town = rs.getString("town");
+                countyId = rs.getInt("county_id");
+                Restaurant r = new Restaurant(id, username, password, name, phone, street, town, countyId);
+                restaurants.add(r);
             }
         } catch (SQLException ex) {
             System.out.println("Exception occured in the getRestaurantsByCountyId() method: " + ex.getMessage());
-        }finally{
-            try{
-                if(rs != null){
+        } finally {
+            try {
+                if (rs != null) {
                     rs.close();
                 }
-                if(ps != null){
+                if (ps != null) {
                     ps.close();
                 }
-                if(con != null){
+                if (con != null) {
                     freeConnection(con);
                 }
-            } catch(SQLException e){
+            } catch (SQLException e) {
                 System.out.println("Exception occured in the finally section of the getAllRestaurants() method, " + e.getMessage());
             }
         }

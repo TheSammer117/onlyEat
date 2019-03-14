@@ -13,13 +13,12 @@
         <link rel="stylesheet" href="Styles/bootstrap-4.3.1/css/custom.css">
         <link rel="stylesheet" href="Styles/main.css">
     </head>
-    <body >
+    <body class="text-center">
         <div class="container">
-        <footer class="footer mt-auto py-3">
+        <footer class="footer py-3">
                 <span class="text-muted">
                     Copyright@2019 Only Eat
                 </span>
-            
         </footer>
         </div>
     </body>
