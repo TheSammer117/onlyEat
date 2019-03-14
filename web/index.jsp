@@ -47,9 +47,10 @@
                 <input type="submit" class="btn btn-info  mt-5" value="Find restaurants" />
                 <input type="hidden" name ="action" value="viewRestaurants" />
             </form>
-        </div>
 
+        </div>
         <%@ include file="Includes/footer.jsp" %> 
+
 
     </body>
 </html>

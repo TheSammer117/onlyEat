@@ -27,6 +27,8 @@
                 <input type="hidden" name ="action" value="restaurantLogin" />
 
             </form>
+            <br/>
+            <label>A Customer? </label><a href="customerLogin.jsp"><b> Customer Login</b></a>
         </div>
         <%@ include file="Includes/footer.jsp" %> 
     </body>
