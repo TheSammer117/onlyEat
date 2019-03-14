@@ -221,4 +221,49 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         }
         return food;
     }
+    @Override
+    public Food getFoodByFoodId(int foodId) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Food food = null;
+
+        try {
+            conn = getConnection();
+            String query = "SELECT * FROM food WHERE food_id =?";
+            ps = conn.prepareStatement(query);
+
+            
+            ps.setInt(1, foodId);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                food = new Food();
+                food.setFoodId(rs.getInt("food_id"));
+                food.setRestaurantId(rs.getInt("restaurant_id"));
+                food.setName(rs.getString("name"));
+                food.setPrice(rs.getDouble("price"));
+                food.setTypeId(rs.getInt("type_id"));
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Exception occured  in the getFoodByFoodId() method: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    freeConnection(conn);
+                }
+            } catch (SQLException e) {
+                System.out.println("Exception occured in the finally section of the getFoodByFoodId() method: " + e.getMessage());
+            }
+        }
+        return food;
+    }
 }

@@ -23,4 +23,6 @@ public interface FoodDaoInterface {
     public int removeFood(int restaurantId, int foordId);
     
      public int updatePrice(int restaurantId, int foordId,double price);
+     
+     public Food getFoodByFoodId(int foodId);
 }
