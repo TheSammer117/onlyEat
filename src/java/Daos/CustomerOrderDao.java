@@ -76,7 +76,7 @@ public class CustomerOrderDao extends Dao implements CustomerOrderDaoInterface {
         ArrayList<OrderDetail> OrderDetails = new ArrayList();
         try {
             con = this.getConnection();
-            String query = "select * from order_detail inner join food on food.food_id = order_detail.food_id inner join customer_order  on customer_order.order_id = order_detail.order_id where food.food_id =? and order_date =?";
+            String query = "select * from order_detail inner join food on food.food_id = order_detail.food_id inner join customer_order  on customer_order.order_id = order_detail.order_id where food.food_id =? and order_date =? and status =1";
             ps = con.prepareStatement(query);
             ps.setInt(1, foodId);
             java.sql.Date sqlCurrentDate = new java.sql.Date(currentDate.getTime());
@@ -108,5 +108,34 @@ public class CustomerOrderDao extends Dao implements CustomerOrderDaoInterface {
         return OrderDetails;
     }
 
+    @Override
+    public int FinishOrder(int orderId) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        int rowsAffected = 0;
+        try {
+            con = this.getConnection();
+            String query = "UPDATE customer_order SET status=0 WHERE order_id=?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, orderId);
+            rowsAffected = ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("\tA problem occurred during the FinishOrder method:");
+            System.err.println("\t" + e.getMessage());
+            rowsAffected = 0;
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.err.println("A problem occurred when closing down the FinishOrder method:\n" + e.getMessage());
+            }
+        }
+     return rowsAffected;
+    }
 
 }

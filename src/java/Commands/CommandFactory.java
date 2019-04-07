@@ -48,7 +48,10 @@ public class CommandFactory {
                     break;
                 case "updatePrice":
                     c = new UpdatePriceCommand();
-                     break;
+                    break;
+                case "confirmOrder":
+                    c = new ConfirmOrderCommand();
+                    break;
                 case "logout":
                     c = new LogoutCommand();
                     break;

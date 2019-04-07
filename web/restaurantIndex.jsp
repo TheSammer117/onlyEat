@@ -53,6 +53,7 @@
                         <th>Item Name</th>
                         <th>Quantity</th>
                         <th>Date</th>
+                        <th>Confirm</th>
                     </tr>
                 </thead>
                 <%    for (int i = 0; i < foods.size(); i++) {
@@ -69,7 +70,14 @@
                     <tr>
                         <td><%=f.getName()%></td>
                         <td><%=quatity%></td>
-                        <td><%=sdf.format(new Date())%></td>
+                        <td><%=sdf.format(new Date())%></td>                   
+                        <td>
+                            <form action="FrontController" method="post">
+                                <input type="hidden" name ="action" value="confirmOrder" />
+                                <input type="hidden" name ="orderId" value="<%=orderId%>" />
+                                <input type="submit" class="btn btn-danger" value="Delivery" /> 
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
                 <%   }
@@ -81,7 +89,7 @@
             %>
             <p class="mt-4">You have not got any order yet!!</p>
             <%
-                    }%>
+                }%>
 
 
             <% } else {

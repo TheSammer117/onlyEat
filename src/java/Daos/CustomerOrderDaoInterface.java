@@ -13,7 +13,11 @@ import java.util.ArrayList;
  * @author 82509
  */
 public interface CustomerOrderDaoInterface {
-        public int getCustomerIdByOrderId(int orderId);
-       public ArrayList<OrderDetail> getOrderDetails(int foodId);
+
+    public int getCustomerIdByOrderId(int orderId);
+
+    public ArrayList<OrderDetail> getOrderDetails(int foodId);
+
+    public int FinishOrder(int orderId);
 
 }
