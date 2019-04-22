@@ -58,6 +58,12 @@ public class CommandFactory {
                 case "restaurantLogout":
                     c = new RestaurantLogoutCommand();
                     break;
+                case "addToCart":
+                    c = new AddToCartCommand();
+                    break;
+                case "removeFromCart":
+                    c = new RemoveFromCartCommand();
+                    break;
                 default:
                     c = new NoActionSuppliedCommand();
                     break;
