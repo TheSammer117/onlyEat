@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2019-03-13 22:53:00
--- 服务器版本： 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Generation Time: Apr 22, 2019 at 10:05 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +25,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 表的结构 `county`
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `customer_id` int(4) NOT NULL,
+  `food_id` int(4) NOT NULL,
+  `quantity` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `county`
 --
 
 CREATE TABLE `county` (
@@ -32,7 +46,7 @@ CREATE TABLE `county` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `county`
+-- Dumping data for table `county`
 --
 
 INSERT INTO `county` (`county_id`, `name`) VALUES
@@ -72,7 +86,7 @@ INSERT INTO `county` (`county_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -85,16 +99,17 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`customer_id`, `username`, `password`, `first_name`, `last_name`, `phone`) VALUES
-(1, 'joe', '1000:db3ce5287f12a3ac775c9b99c4269af2:be6698a1d82703d0c78eaa2a235b1553672030761b2e1337970d1e501522b5dbfd01c71b12907a0ce7e4e9027cdf67f255d1ca767909b0fbbd0f932703066498', 'peter', 'dean', 848231490);
+(1, 'joe', '1000:db3ce5287f12a3ac775c9b99c4269af2:be6698a1d82703d0c78eaa2a235b1553672030761b2e1337970d1e501522b5dbfd01c71b12907a0ce7e4e9027cdf67f255d1ca767909b0fbbd0f932703066498', 'peter', 'dean', 848231490),
+(2, 'jhon', '1000:8bc42cdae86eab71148bb62596239944:3fbada3fd790cf187a191e14768853509c83dff08b26ab8d0738a6b61ee2aa90b3015299562a8e1e3b68f7f04a942cc68e51abba55c45b3f3d6835c0c9e73dd2', 'efjij', 'seifnie', 93493845);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `customer_order`
+-- Table structure for table `customer_order`
 --
 
 CREATE TABLE `customer_order` (
@@ -107,7 +122,7 @@ CREATE TABLE `customer_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `customer_order`
+-- Dumping data for table `customer_order`
 --
 
 INSERT INTO `customer_order` (`order_id`, `customer_id`, `customer_message`, `order_date`, `is_paid`, `status`) VALUES
@@ -116,7 +131,7 @@ INSERT INTO `customer_order` (`order_id`, `customer_id`, `customer_message`, `or
 -- --------------------------------------------------------
 
 --
--- 表的结构 `c_address`
+-- Table structure for table `c_address`
 --
 
 CREATE TABLE `c_address` (
@@ -130,7 +145,7 @@ CREATE TABLE `c_address` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `food`
+-- Table structure for table `food`
 --
 
 CREATE TABLE `food` (
@@ -142,11 +157,10 @@ CREATE TABLE `food` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `food`
+-- Dumping data for table `food`
 --
 
 INSERT INTO `food` (`food_id`, `restaurant_id`, `name`, `price`, `type_id`) VALUES
-(1, 2, 'Cheese & Tomato Pizza', 10.00, 1),
 (2, 4, 'Cheese & Tomato Pizza', 9.00, 1),
 (3, 5, 'Cheese & Tomato Pizza', 10.00, 1),
 (4, 8, 'Zicos Special Pizza', 10.00, 1),
@@ -169,7 +183,7 @@ INSERT INTO `food` (`food_id`, `restaurant_id`, `name`, `price`, `type_id`) VALU
 -- --------------------------------------------------------
 
 --
--- 表的结构 `food_type`
+-- Table structure for table `food_type`
 --
 
 CREATE TABLE `food_type` (
@@ -179,7 +193,7 @@ CREATE TABLE `food_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `food_type`
+-- Dumping data for table `food_type`
 --
 
 INSERT INTO `food_type` (`type_id`, `name`, `description`) VALUES
@@ -194,7 +208,7 @@ INSERT INTO `food_type` (`type_id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `order_detail`
+-- Table structure for table `order_detail`
 --
 
 CREATE TABLE `order_detail` (
@@ -204,7 +218,7 @@ CREATE TABLE `order_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `order_detail`
+-- Dumping data for table `order_detail`
 --
 
 INSERT INTO `order_detail` (`order_id`, `food_id`, `quantity`) VALUES
@@ -214,7 +228,7 @@ INSERT INTO `order_detail` (`order_id`, `food_id`, `quantity`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `restaurant`
+-- Table structure for table `restaurant`
 --
 
 CREATE TABLE `restaurant` (
@@ -229,7 +243,7 @@ CREATE TABLE `restaurant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `restaurant`
+-- Dumping data for table `restaurant`
 --
 
 INSERT INTO `restaurant` (`restaurant_id`, `username`, `password`, `name`, `phone`, `street`, `town`, `county_id`) VALUES
@@ -303,79 +317,87 @@ ALTER TABLE `restaurant`
   ADD KEY `county_id` (`county_id`);
 
 --
--- 在导出的表使用AUTO_INCREMENT
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- 使用表AUTO_INCREMENT `county`
+-- AUTO_INCREMENT for table `county`
 --
 ALTER TABLE `county`
   MODIFY `county_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
--- 使用表AUTO_INCREMENT `customer`
+-- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- 使用表AUTO_INCREMENT `customer_order`
+-- AUTO_INCREMENT for table `customer_order`
 --
 ALTER TABLE `customer_order`
   MODIFY `order_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- 使用表AUTO_INCREMENT `c_address`
+-- AUTO_INCREMENT for table `c_address`
 --
 ALTER TABLE `c_address`
   MODIFY `address_id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
--- 使用表AUTO_INCREMENT `food`
+-- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
   MODIFY `food_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
--- 使用表AUTO_INCREMENT `food_type`
+-- AUTO_INCREMENT for table `food_type`
 --
 ALTER TABLE `food_type`
   MODIFY `type_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- 使用表AUTO_INCREMENT `restaurant`
+-- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
   MODIFY `restaurant_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- 限制导出的表
+-- Constraints for dumped tables
 --
 
 --
--- 限制表 `customer_order`
+-- Constraints for table `customer_order`
 --
 ALTER TABLE `customer_order`
   ADD CONSTRAINT `customer_order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
 
 --
--- 限制表 `c_address`
+-- Constraints for table `c_address`
 --
 ALTER TABLE `c_address`
   ADD CONSTRAINT `c_address_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
 
 --
--- 限制表 `food`
+-- Constraints for table `food`
 --
 ALTER TABLE `food`
   ADD CONSTRAINT `food_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `food_type` (`type_id`),
   ADD CONSTRAINT `food_ibfk_3` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`);
 
 --
--- 限制表 `order_detail`
+-- Constraints for table `order_detail`
 --
 ALTER TABLE `order_detail`
   ADD CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `customer_order` (`order_id`),
   ADD CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`);
 
 --
--- 限制表 `restaurant`
+-- Constraints for table `restaurant`
 --
 ALTER TABLE `restaurant`
   ADD CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`county_id`) REFERENCES `county` (`county_id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
