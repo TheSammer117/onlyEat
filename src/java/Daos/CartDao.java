@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  *
  * @author zbo97
  */
-public class CartDao extends Dao implements CartDaoInterface{
-    
-    public CartDao(String databaseName){
+public class CartDao extends Dao implements CartDaoInterface {
+
+    public CartDao(String databaseName) {
         super(databaseName);
     }
 
@@ -31,14 +31,14 @@ public class CartDao extends Dao implements CartDaoInterface{
         ResultSet rs = null;
         Cart cart = null;
         ArrayList<Cart> cartList = new ArrayList();
-        
-        try{
+
+        try {
             conn = getConnection();
             String query = "SELECT * FROM cart WHERE customer_id = ?";
             ps = conn.prepareStatement(query);
             ps.setInt(1, customerId);
             rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 int foodId = rs.getInt("food_id");
                 int quantity = rs.getInt("quantity");
@@ -47,7 +47,7 @@ public class CartDao extends Dao implements CartDaoInterface{
             }
         } catch (SQLException ex) {
             System.out.println("Exception occured  in the getCartListByCustomerId() method: " + ex.getMessage());
-        }finally {
+        } finally {
             try {
                 if (rs != null) {
                     rs.close();
@@ -80,7 +80,7 @@ public class CartDao extends Dao implements CartDaoInterface{
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Exception occured  in the addToCart() method: " + ex.getMessage());
-        }finally {
+        } finally {
             try {
                 if (ps != null) {
                     ps.close();
@@ -113,7 +113,7 @@ public class CartDao extends Dao implements CartDaoInterface{
             System.err.println("\tA problem occurred during the removeAnItemFromCart method:");
             System.err.println("\t" + ex.getMessage());
             rowsAffected = 0;
-        }finally {
+        } finally {
             try {
                 if (ps != null) {
                     ps.close();
@@ -127,5 +127,35 @@ public class CartDao extends Dao implements CartDaoInterface{
         }
         return rowsAffected;
     }
-    
+
+    @Override
+    public int emptyCartByCustomerId(int customerId) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        int rowsAffected = 0;
+        try {
+            con = getConnection();
+            String query = "DELETE FROM cart WHERE customer_id = ?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, customerId);
+            rowsAffected = ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("\tA problem occurred during the emptyCartByCustomerId method:");
+            System.err.println("\t" + ex.getMessage());
+            rowsAffected = 0;
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.err.println("A problem occured when closing down the emptyCartByCustomerId method:\n" + e.getMessage());
+            }
+        }
+        return rowsAffected;
+    }
+
 }

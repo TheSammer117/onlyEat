@@ -17,7 +17,11 @@ public interface OrderDetailDaoInterface {
     public int getFoodAmount(int orderId, int foodId);
 
     public ArrayList<OrderDetail> getFoodDetails(int foodId);
-     public int getOrderIdByFoodId(int foodId);
-      public ArrayList<Integer> getFoodIdByOrder(int orderId);
+
+    public int getOrderIdByFoodId(int foodId);
+
+    public ArrayList<Integer> getFoodIdByOrder(int orderId);
+
+    public int createAnOrderDetailByOrderId(int orderId, int foodId, int quantity);
 
 }

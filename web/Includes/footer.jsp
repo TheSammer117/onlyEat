@@ -14,12 +14,10 @@
         <link rel="stylesheet" href="Styles/main.css">
     </head>
     <body class="text-center">
-        <div class="container">
-        <footer class="footer py-3">
+        <div class="container footer py-3">
                 <span class="text-muted">
                     Copyright@2019 Only Eat
                 </span>
-        </footer>
         </div>
     </body>
 </html>

@@ -18,4 +18,6 @@ public interface CartDaoInterface {
     public void addToCart(int customerId, int foodId, int quantity);
     
     public int removeAnItemFromCart(int customerId, int foodId, int quantity);
+    
+    public int emptyCartByCustomerId(int customerId);
 }

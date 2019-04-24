@@ -64,6 +64,9 @@ public class CommandFactory {
                 case "removeFromCart":
                     c = new RemoveFromCartCommand();
                     break;
+                case "placeOrder":
+                    c = new PlaceOrderCommand();
+                    break;
                 default:
                     c = new NoActionSuppliedCommand();
                     break;

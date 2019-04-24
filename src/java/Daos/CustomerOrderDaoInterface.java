@@ -19,5 +19,7 @@ public interface CustomerOrderDaoInterface {
     public ArrayList<OrderDetail> getOrderDetails(int foodId);
 
     public int FinishOrder(int orderId);
+    
+    public int createACustomerOrder(int customerId, String customerMessage);
 
 }

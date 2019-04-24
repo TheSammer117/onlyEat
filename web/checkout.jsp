@@ -4,6 +4,9 @@
     Author     : zbo97
 --%>
 
+<%@page import="Daos.FoodDao"%>
+<%@page import="Dtos.Cart"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,25 +16,47 @@
     </head>
     <body>
         <%@ include file = "Includes/cHeader.jsp" %>
-        <div class="container">
+        <%            ArrayList<Cart> cartList = new ArrayList();
+            cartList = (ArrayList<Cart>) session.getAttribute("cartList");
+            FoodDao fDao = new FoodDao("delivery");
+            String foodName = null;
+            double price = 0.0;
+            double total = 0.0;
+            if (cartList != null) {
+        %>
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-md-4 order-md-2 mb-4">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-muted">Your cart</span>
                     </h4>
                     <ul class="list-group mb-3">
+                        <%
+                            for (int i = 0; i < cartList.size(); i++) {
+                                foodName = fDao.getFoodByFoodId(cartList.get(i).getFood_Id()).getName();
+                                price = fDao.getFoodByFoodId(cartList.get(i).getFood_Id()).getPrice();
+                                total = total + price;
+                        %>
+
                         <li class="list-group-item d-flex justify-content-between ">
                             <div>
-                                <h6 class="my-0">product name</h6>
+                                <h6 class="my-0"><%=foodName%></h6>
                                 <small class="text-muted">Brief description</small>
                             </div>
-                            <span class="text-muted"> $ 12 </span>
+                            <span class="text-muted"> € <%=price%></span>
+                        </li>                    
+                        <%}
+                        %>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (Euro)</span>
+                            <strong> € <%=total%></strong>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-8 order-md-1">
                     <h4 class="mb-3">Shipping address</h4>
-                    <form class="">
+                    <form action="FrontController" method="post" class="">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label>First name</label>
@@ -82,12 +107,33 @@
                                 <input type="text" class="form-control" required="">
                             </div>
                             <hr class="mb-4">
+                            <input type="hidden" name ="action" value="placeOrder" />
+                            <input type="hidden" name ="customerId" value="<%= loggedInUser.getCustomerId()%>" />
                             <input type="submit" class="btn btn-primary btn-lg btn-block" value="Continue">
+                        </div>
+                        <div class="mb-10">
+                            <label>Add message with this order</label>
+                            <input type="text" class="form-control" name="message">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <%@ include file="Includes/footer.jsp" %> 
+
+
+        <%
+        } else {
+        %>
+        <div class="container mt-5">
+        <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
+        <%
+            out.println("You do not have anything in your cart.");
+            %><a href="index.jsp">Back to index</a></div><%
+                }
+        %>
+
+
+        
     </body>
+    <%@ include file="Includes/footer.jsp" %> 
 </html>

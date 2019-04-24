@@ -10,8 +10,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -135,7 +138,51 @@ public class CustomerOrderDao extends Dao implements CustomerOrderDaoInterface {
                 System.err.println("A problem occurred when closing down the FinishOrder method:\n" + e.getMessage());
             }
         }
-     return rowsAffected;
+        return rowsAffected;
+    }
+
+    @Override
+    public int createACustomerOrder(int customerId, String customerMessage) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet generatedKeys = null;
+        Date currentDate;
+        currentDate = new Date();
+        int newId = -1;
+        try {
+            con = getConnection();
+            String query = "INSERT INTO customer_order (customer_id, customer_message, order_date, is_paid, status) VALUES (?, ?, ?, 1, 1)";
+            ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, customerId);
+            ps.setString(2, customerMessage);
+            java.sql.Date sqlCurrentDate = new java.sql.Date(currentDate.getTime());
+            ps.setDate(3, sqlCurrentDate);
+            ps.executeUpdate();
+            generatedKeys = ps.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                newId = generatedKeys.getInt(1);
+            }
+            
+        } catch (SQLException ex) {
+            System.err.println("\tA problem occurred during the createACustomerOrder() method:");
+            System.err.println("\t" + ex.getMessage());
+            newId = -1;
+        }finally {
+            try {
+                if (generatedKeys != null) {
+                    generatedKeys.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.err.println("A problem occurred when closing down the createACustomerOrder method:\n" + e.getMessage());
+            }
+        }
+        return newId;
     }
 
 }

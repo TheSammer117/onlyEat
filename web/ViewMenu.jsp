@@ -46,6 +46,7 @@
                         if (cartList.isEmpty()) {
                             out.println("No item in your cart, please select one from the menu");
                         } else {
+                            session.setAttribute("cartList", cartList);
                             for (Cart cartItem : cartList) {
                                 foodId = cartItem.getFood_Id();
                                 quantity = cartItem.getQuantity();
@@ -63,10 +64,17 @@
                         <td><input type="submit" class="btn btn-info" value="Remove" /></td>
                     </form>
                     </tr>
+                    <tr>
+                    <label>  </label>
+                    </tr>
+                    <tr>
+                    <a href="checkout.jsp">Go to checkout</a>
+                    </tr>
                     <%
                             }
                         }
                     %>
+                    
                 </table>
             </div>
 
