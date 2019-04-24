@@ -17,7 +17,7 @@
     </head>
     <body>
         <%@ include file = "Includes/cHeader.jsp" %>
-        <div class="container text-center">
+        <div class="container text-center mt-5">
             <%            String successMessage = (String) session.getAttribute("successMessage");
                 if (successMessage != null) {
             %>
