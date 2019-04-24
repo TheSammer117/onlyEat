@@ -89,7 +89,7 @@
             <%
             } else {
             %>
-            <p class="mt-4">You have not got any order yet!!</p>
+            <p class="mt-4">You have not got any item in your menu yet!!</p>
             <%
                 }%>
 
