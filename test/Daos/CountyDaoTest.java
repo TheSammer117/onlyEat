@@ -23,7 +23,7 @@ public class CountyDaoTest {
     private CountyDao countyDao;
 
     public CountyDaoTest() {
-        countyDao = new CountyDao("delivery");
+        countyDao = new CountyDao("delivery_test");
     }
 
     @BeforeClass
@@ -52,4 +52,27 @@ public class CountyDaoTest {
         assertTrue((result.size() > 0));
     }
 
+    /**
+     * Test of getCountyById method, of class CountyDao.
+     */
+    @Test
+    public void testGetCountyById() {
+        System.out.println("getCountyById");
+        int countyId = 0;
+        String name = null;
+        County expResult = new County(countyId,name);
+        County result = countyDao.getCountyById(countyId);
+        assertEquals(expResult, result);
+
+    }
+    @Test
+    public void testGetCountyById2() {
+        System.out.println("getCountyById");
+        int countyId = 1;
+        String name = "Antrim";
+        County expResult = new County(countyId,name);
+        County result = countyDao.getCountyById(countyId);
+        assertEquals(expResult, result);
+
+    }
 }

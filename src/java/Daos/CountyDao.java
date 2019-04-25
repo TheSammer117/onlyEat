@@ -76,6 +76,7 @@ public class CountyDao extends Dao implements CountyDaoInterface {
             ps.setInt(1, countyId);
             rs = ps.executeQuery();
             if (rs.next()) {
+                c.setCountyId(countyId);
                 c.setName(rs.getString("name"));
             }
         } catch (SQLException ex) {

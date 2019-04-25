@@ -23,7 +23,7 @@ public class RestaurantDaoTest {
     private RestaurantDao restaurantDao;
 
     public RestaurantDaoTest() {
-        restaurantDao = new RestaurantDao("delivery");
+        restaurantDao = new RestaurantDao("delivery_test");
     }
 
     @BeforeClass
@@ -46,7 +46,7 @@ public class RestaurantDaoTest {
      * Test of registerRestaurant method, of class RestaurantDao.
      */
     @Test
-    public void testRegisterRestaurant1() {
+    public void testRegisterRestaurant() {
         System.out.println("registerRestaurant");
         String username = "1234";
         String password = "1234";
@@ -125,5 +125,7 @@ public class RestaurantDaoTest {
         assertTrue((result.isEmpty()));
 
     }
+
+
 
 }

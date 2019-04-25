@@ -23,7 +23,7 @@ public class FoodTypeDaoTest {
     private FoodTypeDao foodTypeDao;
 
     public FoodTypeDaoTest() {
-        foodTypeDao = new FoodTypeDao("delivery");
+        foodTypeDao = new FoodTypeDao("delivery_test");
     }
 
     @BeforeClass
@@ -49,7 +49,7 @@ public class FoodTypeDaoTest {
     public void testGetAllFoodType() {
         System.out.println("getAllFoodType");
         ArrayList<FoodType> result = foodTypeDao.getAllFoodType();
-        assertTrue((result.isEmpty()));
+        assertTrue(result.size() > 0);
     }
 
     /**
@@ -64,5 +64,13 @@ public class FoodTypeDaoTest {
         assertEquals(expResult, result);
 
     }
+    @Test
+    public void testGetNameById2() {
+        System.out.println("getNameById");
+        int typeId = 1;
+        String expResult = "Pizzas";
+        String result = foodTypeDao.getNameById(typeId);
+        assertEquals(expResult, result);
 
+    }
 }

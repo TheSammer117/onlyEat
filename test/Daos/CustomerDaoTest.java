@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 public class CustomerDaoTest {
         private  CustomerDao  customerDao;
     public CustomerDaoTest() {
-            customerDao = new CustomerDao("delivery");
+            customerDao = new CustomerDao("delivery_test");
     }
     
     @BeforeClass
@@ -53,7 +53,18 @@ public class CustomerDaoTest {
         int result =  customerDao.registerCustomer(username, password, firstName, lastName, phone);
         assertTrue((result > 0));
     }
-
+    @Test
+    public void testRegisterCustomer2() {
+        System.out.println("registerCustomer");
+        String username = "1234";
+        String password = "1234";
+        String firstName = "sweaty";
+        String lastName = "paul";
+        String phone = "12345678";
+        int expResult = -1;
+        int result =  customerDao.registerCustomer(username, password, firstName, lastName, phone);
+         assertEquals(expResult, result);
+    }
     /**
      * Test of getCustomerByUsernamePassword method, of class CustomerDao.
      */
@@ -75,6 +86,18 @@ public class CustomerDaoTest {
     public void testUpdateCustomerProfile() {
         System.out.println("updateCustomerProfile");
         int customerId = 100;
+        String username = "zzh";
+        String firstName = "joe";
+        String lastName = "dean";
+        String phone = "12345678";
+        int expResult = 0;
+        int result = customerDao.updateCustomerProfile(customerId, username, firstName, lastName, phone);
+        assertEquals(expResult, result);
+    }
+        @Test
+    public void testUpdateCustomerProfile2() {
+        System.out.println("updateCustomerProfile");
+        int customerId = 3;
         String username = "zzh";
         String firstName = "joe";
         String lastName = "dean";

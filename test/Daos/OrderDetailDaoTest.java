@@ -23,7 +23,7 @@ public class OrderDetailDaoTest {
     private OrderDetailDao orderDetailDao;
 
     public OrderDetailDaoTest() {
-        orderDetailDao = new OrderDetailDao("delivery");
+        orderDetailDao = new OrderDetailDao("delivery_test");
     }
 
     @BeforeClass
@@ -55,7 +55,16 @@ public class OrderDetailDaoTest {
         assertEquals(expResult, result);
 
     }
+    @Test
+    public void testGetFoodAmount2() {
+        System.out.println("getFoodAmount");
+        int orderId = 1;
+        int foodId = 3;
+        int expResult = 1;
+        int result = orderDetailDao.getFoodAmount(orderId, foodId);
+        assertEquals(expResult, result);
 
+    }
     /**
      * Test of getFoodDetails method, of class OrderDetailDao.
      */
@@ -80,7 +89,15 @@ public class OrderDetailDaoTest {
         assertEquals(expResult, result);
 
     }
+    @Test
+    public void testGetOrderIdByFoodId2() {
+        System.out.println("getOrderIdByFoodId");
+        int foodId = 3;
+        int expResult = 1;
+        int result = orderDetailDao.getOrderIdByFoodId(foodId);
+        assertEquals(expResult, result);
 
+    }
     /**
      * Test of getFoodIdByOrder method, of class OrderDetailDao.
      */
@@ -90,6 +107,31 @@ public class OrderDetailDaoTest {
         int orderId = 77;
         ArrayList<Integer> result = orderDetailDao.getFoodIdByOrder(orderId);
         assertTrue((result.isEmpty()));
+
+    }
+    @Test
+    public void testGetFoodIdByOrder2() {
+        System.out.println("getFoodIdByOrder");
+        int orderId = 1;
+           ArrayList<Integer> expResult = new  ArrayList<Integer>() ;
+           expResult.add(3);
+           expResult.add(10);
+        ArrayList<Integer> result = orderDetailDao.getFoodIdByOrder(orderId);
+     assertEquals(expResult, result);
+
+    }
+    /**
+     * Test of createAnOrderDetailByOrderId method, of class OrderDetailDao.
+     */
+    @Test
+    public void testCreateAnOrderDetailByOrderId() {
+        System.out.println("createAnOrderDetailByOrderId");
+        int orderId = 0;
+        int foodId = 0;
+        int quantity = 0;
+        int expResult = -1;
+        int result = orderDetailDao.createAnOrderDetailByOrderId(orderId, foodId, quantity);
+        assertEquals(expResult, result);
 
     }
 

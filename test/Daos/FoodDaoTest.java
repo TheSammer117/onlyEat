@@ -23,7 +23,7 @@ public class FoodDaoTest {
     private FoodDao foodDao;
 
     public FoodDaoTest() {
-        foodDao = new FoodDao("delivery");
+        foodDao = new FoodDao("delivery_test");
     }
 
     @BeforeClass
@@ -57,7 +57,18 @@ public class FoodDaoTest {
         assertEquals(expResult, result);
 
     }
+   @Test
+    public void testAddAFood2() {
+        System.out.println("addAFood");
+        int restaurantId = 2;
+        String food = "dumping";
+        double price = 10.0;
+        int typeId = 1;
+        int expResult = 21;
+        int result = foodDao.addAFood(restaurantId, food, price, typeId);
+        assertEquals(expResult, result);
 
+    }
     /**
      * Test of getFoodByRestaurantId method, of class FoodDao.
      */
@@ -69,6 +80,7 @@ public class FoodDaoTest {
         assertTrue((result.isEmpty()));
 
     }
+    
 
     /**
      * Test of removeFood method, of class FoodDao.
@@ -82,7 +94,15 @@ public class FoodDaoTest {
         int result = foodDao.removeFood(restaurantId, foordId);
         assertEquals(expResult, result);
     }
-
+    @Test
+    public void testRemoveFood2() {
+        System.out.println("removeFood");
+        int restaurantId = 2;
+        int foordId = 21;
+        int expResult = 0;
+        int result = foodDao.removeFood(restaurantId, foordId);
+        assertEquals(expResult, result);
+    }
 
     /**
      * Test of updatePrice method, of class FoodDao.
@@ -113,4 +133,25 @@ public class FoodDaoTest {
 
     }
 
+    /**
+     * Test of getFoodByFoodId method, of class FoodDao.
+     */
+    @Test
+    public void testGetFoodByFoodId() {
+        System.out.println("getFoodByFoodId");
+        int foodId = 0;
+        Food expResult = null;
+        Food result = foodDao.getFoodByFoodId(foodId);
+        assertEquals(expResult, result);
+
+    }
+    @Test
+    public void testGetFoodByFoodId2() {
+        System.out.println("getFoodByFoodId");
+        int foodId = 2;
+        Food expResult = new Food(2,4,"Cheese & Tomato Pizza",9.00,1);
+        Food result = foodDao.getFoodByFoodId(foodId);
+        assertEquals(expResult, result);
+
+    }
 }
