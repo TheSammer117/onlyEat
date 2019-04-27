@@ -19,24 +19,25 @@ import static org.junit.Assert.*;
  * @author 82509
  */
 public class CustomerOrderDaoTest {
+
     private CustomerOrderDao customerOrderDao;
-    
+
     public CustomerOrderDaoTest() {
         customerOrderDao = new CustomerOrderDao("delivery_test");
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -48,21 +49,22 @@ public class CustomerOrderDaoTest {
     public void testGetCustomerIdByOrderId() {
         System.out.println("getCustomerIdByOrderId");
         int orderId = 100;
-    
+
         int expResult = 0;
         int result = customerOrderDao.getCustomerIdByOrderId(orderId);
         assertEquals(expResult, result);
-  
+
     }
-        @Test
+
+    @Test
     public void testGetCustomerIdByOrderId2() {
         System.out.println("getCustomerIdByOrderId");
         int orderId = 1;
-    
+
         int expResult = 1;
         int result = customerOrderDao.getCustomerIdByOrderId(orderId);
         assertEquals(expResult, result);
-  
+
     }
 
     /**
@@ -75,10 +77,16 @@ public class CustomerOrderDaoTest {
         ArrayList<OrderDetail> result = customerOrderDao.getOrderDetails(foodId);
         assertTrue((result.isEmpty()));
     }
-        @Test
+
+    @Test
     public void testGetOrderDetails2() {
         System.out.println("getOrderDetails");
-        int foodId = 10;
+        int foodId = 3;
+        int orderId = 1;
+        int quatity = 1;
+        OrderDetail o1 = new OrderDetail(orderId, foodId, quatity);
+        ArrayList<OrderDetail> expResult = new ArrayList<OrderDetail>();
+        expResult.add(o1);
         ArrayList<OrderDetail> result = customerOrderDao.getOrderDetails(foodId);
         assertTrue((result.isEmpty()));
     }
@@ -95,7 +103,8 @@ public class CustomerOrderDaoTest {
         assertEquals(expResult, result);
 
     }
-        @Test
+
+    @Test
     public void testFinishOrder2() {
         System.out.println("FinishOrder");
         int orderId = 1;
@@ -104,6 +113,7 @@ public class CustomerOrderDaoTest {
         assertEquals(expResult, result);
 
     }
+
     /**
      * Test of createACustomerOrder method, of class CustomerOrderDao.
      */
@@ -117,5 +127,15 @@ public class CustomerOrderDaoTest {
         assertEquals(expResult, result);
 
     }
-    
+
+    @Test
+    public void testCreateACustomerOrder2() {
+        System.out.println("createACustomerOrder");
+        int customerId = 1;
+        String customerMessage = "";
+        int expResult = 3;
+        int result = customerOrderDao.createACustomerOrder(customerId, customerMessage);
+        assertEquals(expResult, result);
+
+    }
 }

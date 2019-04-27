@@ -134,5 +134,15 @@ public class OrderDetailDaoTest {
         assertEquals(expResult, result);
 
     }
+    @Test
+    public void testCreateAnOrderDetailByOrderId2() {
+        System.out.println("createAnOrderDetailByOrderId");
+        int orderId = 3;
+        int foodId = 5;
+        int quantity = 1;
+        int expResult = -1;
+        int result = orderDetailDao.createAnOrderDetailByOrderId(orderId, foodId, quantity);
+        assertEquals(expResult, result);
 
+    }
 }

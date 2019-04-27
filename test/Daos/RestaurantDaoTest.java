@@ -6,7 +6,12 @@
 package Daos;
 
 import Dtos.Restaurant;
+import Hashing.Decrypting;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -74,30 +79,14 @@ public class RestaurantDaoTest {
     }
 
     /**
-     * Test of getRestaurantByUsernamePassword method, of class RestaurantDao.
-     */
-    @Test
-    public void testGetRestaurantByUsernamePassword() {
-        System.out.println("getRestaurantByUsernamePassword");
-        String username = "zzh";
-        String password = "1234";
-        Restaurant expResult = null;
-        Restaurant result = restaurantDao.getRestaurantByUsernamePassword(username, password);
-        assertEquals(expResult, result);
-
-    }
-
-
-    /**
      * Test of getAllRestaurants method, of class RestaurantDao.
      */
     @Test
     public void testGetAllRestaurants() {
         System.out.println("getAllRestaurants");
 
-
         ArrayList<Restaurant> result = restaurantDao.getAllRestaurants();
-           assertTrue((result.size() >0));
+        assertTrue((result.size() > 0));
 
     }
 
@@ -113,6 +102,23 @@ public class RestaurantDaoTest {
         assertEquals(expResult, result);
     }
 
+    @Test
+    public void testGetHashedPasswordByUsername2() {
+        System.out.println("getHashedPasswordByUsername");
+        String username = "lee";
+        String password = "password";
+        boolean result = false;
+        String securePass = restaurantDao.getHashedPasswordByUsername(username);
+        try {
+            result = Decrypting.validatePassword(password, securePass);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(CustomerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(CustomerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertTrue((result = true));
+    }
+
     /**
      * Test of getRestaurantsByCountyId method, of class RestaurantDao.
      */
@@ -120,12 +126,29 @@ public class RestaurantDaoTest {
     public void testGetRestaurantsByCountyId() {
         System.out.println("getRestaurantsByCountyId");
         int countyId = 100;
-       
+
         ArrayList<Restaurant> result = restaurantDao.getRestaurantsByCountyId(countyId);
         assertTrue((result.isEmpty()));
 
     }
 
+    @Test
+    public void testGetRestaurantsByCountyId2() {
+        System.out.println("getRestaurantsByCountyId");
+        int countyId = 20;
+        int restaurantId = 3;
+        String username = "Joe";
+        String password = "password";
+        String name = "fat beely";
+        String phone = "832638491";
+        String street = "10 Oriel Hall";
+        String town = "Dundalk";
+        ArrayList<Restaurant> expResult = new ArrayList<Restaurant>();
+        Restaurant r = new Restaurant(restaurantId, username, password, name, phone, street, town, countyId);
+        expResult.add(r);
+        ArrayList<Restaurant> result = restaurantDao.getRestaurantsByCountyId(countyId);
+        assertEquals(expResult, result);
 
+    }
 
 }

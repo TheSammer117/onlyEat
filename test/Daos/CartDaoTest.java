@@ -19,23 +19,25 @@ import static org.junit.Assert.*;
  * @author 82509
  */
 public class CartDaoTest {
-      private CartDao cartDao;
+
+    private CartDao cartDao;
+
     public CartDaoTest() {
         cartDao = new CartDao("delivery_test");
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -50,7 +52,19 @@ public class CartDaoTest {
         ArrayList<Cart> result = cartDao.getCartListByCustomerId(customerId);
         assertTrue((result.isEmpty()));
     }
+    @Test
+    public void testGetCartListByCustomerId2() {
+        System.out.println("getCartListByCustomerId");
+        int customerId = 2;
+        int foodId = 2;
+        int quantity = 2;
+        ArrayList<Cart> expResult = new ArrayList<Cart>();
+        Cart c1 = new Cart(customerId, foodId, quantity);
+        expResult.add(c1);
+        ArrayList<Cart> result = cartDao.getCartListByCustomerId(customerId);
+        assertEquals(expResult, result);
 
+    }
     /**
      * Test of addToCart method, of class CartDao.
      */
@@ -63,6 +77,8 @@ public class CartDaoTest {
         cartDao.addToCart(customerId, foodId, quantity);
 
     }
+
+
 
     /**
      * Test of removeAnItemFromCart method, of class CartDao.
@@ -77,7 +93,8 @@ public class CartDaoTest {
         int result = cartDao.removeAnItemFromCart(customerId, foodId, quantity);
         assertEquals(expResult, result);
 
-    }   
+    }
+
     @Test
     public void testRemoveAnItemFromCart2() {
         System.out.println("removeAnItemFromCart");
@@ -90,18 +107,25 @@ public class CartDaoTest {
 
     }
 
-
     /**
      * Test of emptyCartByCustomerId method, of class CartDao.
      */
     @Test
     public void testEmptyCartByCustomerId() {
         System.out.println("emptyCartByCustomerId");
-        int customerId = 1;
+        int customerId = 10;
         int expResult = 0;
         int result = cartDao.emptyCartByCustomerId(customerId);
         assertEquals(expResult, result);
 
     }
-    
+    @Test
+    public void testEmptyCartByCustomerId2() {
+        System.out.println("emptyCartByCustomerId");
+        int customerId = 2;
+        int expResult = 1;
+        int result = cartDao.emptyCartByCustomerId(customerId);
+        assertEquals(expResult, result);
+
+    }
 }

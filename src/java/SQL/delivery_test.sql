@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2019-04-25 02:22:15
+-- Generation Time: 2019-04-27 21:08:13
 -- 服务器版本： 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -31,6 +31,14 @@ CREATE TABLE `cart` (
   `food_id` int(4) NOT NULL,
   `quantity` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- 转存表中的数据 `cart`
+--
+
+INSERT INTO `cart` (`customer_id`, `food_id`, `quantity`) VALUES
+(1, 1, 2),
+(2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -168,7 +176,7 @@ CREATE TABLE `food` (
 INSERT INTO `food` (`food_id`, `restaurant_id`, `name`, `price`, `type_id`) VALUES
 (2, 4, 'Cheese & Tomato Pizza', 9.00, 1),
 (3, 5, 'Cheese & Tomato Pizza', 10.00, 1),
-(4, 8, 'Zicos Special Pizza', 10.00, 1),
+(4, 7, 'Zicos Special Pizza', 10.00, 1),
 (5, 2, 'Bun Burger', 2.00, 2),
 (6, 2, 'Garlic Burger', 2.60, 2),
 (7, 3, 'Chicken Burger', 3.10, 2),
@@ -183,7 +191,7 @@ INSERT INTO `food` (`food_id`, `restaurant_id`, `name`, `price`, `type_id`) VALU
 (16, 7, 'Banana Fritter', 3.50, 6),
 (17, 4, 'Hot Waffle Topped with Marshmallow', 5.20, 6),
 (18, 7, 'Chocolate Fudge Cake', 4.20, 6),
-(19, 8, 'Cokkies', 2.50, 6);
+(19, 8, 'Cookies', 2.50, 6);
 
 -- --------------------------------------------------------
 
