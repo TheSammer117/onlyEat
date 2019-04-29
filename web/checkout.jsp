@@ -4,6 +4,8 @@
     Author     : zbo97
 --%>
 
+<%@page import="Daos.C_addressDao"%>
+<%@page import="Dtos.C_address"%>
 <%@page import="Daos.FoodDao"%>
 <%@page import="Dtos.Cart"%>
 <%@page import="java.util.ArrayList"%>
@@ -106,11 +108,28 @@
                                 <label>CVV</label>
                                 <input type="text" class="form-control" required="">
                             </div>
+                            <% int customerId = loggedInUser.getCustomerId();
+                                C_address ca = new C_address();
+
+                                C_addressDao caDao = new C_addressDao("delivery");
+                                ca = caDao.getCustomerAddressByCustomerId(customerId);
+
+                                if (ca.getAddressId() <= 0) {
+
+                            %>
+                            <a class="nav-link" href="customerProfile.jsp?customerId=<%=loggedInUser.getCustomerId()%>"> Set your Address first please </a>
+                            <%
+                            } else {
+                            %>
                             <hr class="mb-4">
                             <input type="hidden" name ="action" value="placeOrder" />
-                            <input type="hidden" name ="customerId" value="<%= loggedInUser.getCustomerId()%>" />
+                            <input type="hidden" name ="customerId" value="<%= customerId%>" />
                             <input type="submit" class="btn btn-primary btn-lg btn-block" value="Continue">
                         </div>
+                        <%
+                            }
+                        %>
+
                         <div class="mb-10">
                             <label>Add message with this order</label>
                             <input type="text" class="form-control" name="message">
@@ -125,15 +144,15 @@
         } else {
         %>
         <div class="container mt-5">
-        <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
-        <%
-            out.println("You do not have anything in your cart.");
+            <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
+            <%
+                out.println("You do not have anything in your cart.");
             %><a href="index.jsp">Back to index</a></div><%
                 }
-        %>
+            %>
 
 
-        
+
     </body>
     <%@ include file="Includes/footer.jsp" %> 
 </html>
