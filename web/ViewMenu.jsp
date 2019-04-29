@@ -68,10 +68,11 @@
                     <label>  </label>
                     </tr>
                     <tr>
-                    <a href="checkout.jsp">Go to checkout</a>
+                    
                     </tr>
                     <%
                             }
+%><a href="checkout.jsp">Go to checkout</a><%
                         }
                     %>
                     
