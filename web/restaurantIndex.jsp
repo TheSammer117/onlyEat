@@ -27,6 +27,7 @@
         }, 5000);
     </script>
     <body>
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <div id="reloadContent"></div>   
         
         <%@ include file="Includes/footer.jsp" %> 
