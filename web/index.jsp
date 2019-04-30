@@ -12,11 +12,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%@ include file = "Includes/cHeader.jsp" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Only Eat</title>
+        <title><%=dataBundle.getString("index_title")%></title>
     </head>
     <body>
-        <%@ include file = "Includes/cHeader.jsp" %>
+        
         <div class="container text-center mt-5">
             <%            String successMessage = (String) session.getAttribute("successMessage");
                 if (successMessage != null) {
