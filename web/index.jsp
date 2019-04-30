@@ -14,7 +14,7 @@
     <head>
         <%@ include file = "Includes/cHeader.jsp" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Only Eat</title>
+        <title><%=dataBundle.getString("index_title")%></title>
     </head>
     <body>
         
