@@ -13,6 +13,7 @@
 <html>
     <head>
         <%@ include file = "Includes/cHeader.jsp" %>
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><%=dataBundle.getString("index_title")%></title>
     </head>
