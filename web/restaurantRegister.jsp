@@ -15,6 +15,7 @@
         <title>Register</title>
     </head>
     <body>
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/rHeader.jsp" %>
         <div class="container text-center mt-2" >
             <form class="form-signin" action="FrontController" method="post">

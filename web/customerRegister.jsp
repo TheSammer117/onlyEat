@@ -12,6 +12,7 @@
         <title>Customer Register</title>
     </head>
     <body>
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container text-center mt-5" >
             <form class="form-signin" action="FrontController" method="post">
@@ -37,9 +38,9 @@
                 <input type="hidden" name ="action" value="customerRegister" />
             </form>
             <br/>
-            <label>Already at Only Eat? </label><a href="customerLogin.jsp"><b> Login</b></a>
+            <label><%=dataBundle.getString("cRegister_label1")%></label><a href="customerLogin.jsp"><b> <%=dataBundle.getString("cRegister_b1")%></b></a>
             <br/>
-            <label>Create a Account for Your Restaurant?</label><a href="restaurantRegister.jsp"><b> Create Account </b></a>
+            <label><%=dataBundle.getString("cRegister_label2")%></label><a href="restaurantRegister.jsp"><b> <%=dataBundle.getString("cRegister_b2")%> </b></a>
         </div>
         <%@ include file="Includes/footer.jsp" %> 
     </body>

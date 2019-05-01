@@ -21,7 +21,7 @@
     }
 %>
 <form action="FrontController" method="post">
-    <select name="language" onchange="this.form.submit()">
+    <select class="interHeader" name="language" onchange="this.form.submit()">
         <%
             String language = (String) session.getAttribute("language");
             if (language == null || language.equals("en")) {

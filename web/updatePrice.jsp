@@ -13,6 +13,7 @@
         <title>Update Price Page</title>
     </head>
     <body>
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/rHeader.jsp" %>
         <div class="container text-center">
             <%            int restaurantId = 0;
@@ -32,14 +33,14 @@
             %>
 
             <div>
-                <h2 class="text-left">You can modify your item information here:</h2>
+                <h2 class="text-left"><%=dataBundle.getString("updatePrice_h2")%></h2>
                 <form action="FrontController" method="post">
                     <table class="table table-borderless mt-lg-5">
                         <tr>
-                            <td scope="row">Item Name: <input size="14" type="text" name="name" readonly="readonly" value="<%=f.getName()%>" required/></td>
+                            <td scope="row"><%=dataBundle.getString("updatePrice_td1")%> <input size="14" type="text" name="name" readonly="readonly" value="<%=f.getName()%>" required/></td>
                         </tr>
                         <tr>
-                            <td scope="row">Price: <input type="number" name="price" value="<%=f.getPrice()%>" required/></td>
+                            <td scope="row"><%=dataBundle.getString("updatePrice_price")%> <input type="number" name="price" value="<%=f.getPrice()%>" required/></td>
                         </tr>
 
                     </table>

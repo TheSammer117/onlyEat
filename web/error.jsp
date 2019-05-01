@@ -12,10 +12,11 @@
         <title>Error</title>
     </head>
     <body>
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container text-center mt-5 " >
             <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
-            <h2>Something Went Wrong</h2>
+            <h2><%=dataBundle.getString("errorPage_h2")%></h2>
             <%                Object msg = session.getAttribute("errorMessage");
                 String error = (String) msg;
                 if (error != null) {

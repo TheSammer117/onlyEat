@@ -12,13 +12,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@ include file = "Includes/cHeader.jsp" %>
-        <%@ include file = "Includes/internationalisationHeader.jsp" %>
+        
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><%=dataBundle.getString("containter_home")%></title>
+        <title></title>
     </head>
     <body>
         
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
+        <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container text-center mt-5">
             <%            String successMessage = (String) session.getAttribute("successMessage");
                 if (successMessage != null) {
@@ -36,7 +38,7 @@
             %>
             <form action="FrontController" method="post">
                 <select class="custom-select mt-10" name="selectedCountyId" required>
-                    <option selected>Select a county</option>
+                    <option selected><%=dataBundle.getString("index_select")%></option>
                     <%
                         for (int i = 0; i < countries.size(); i++) {
                     %>

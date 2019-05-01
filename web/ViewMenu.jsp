@@ -16,7 +16,9 @@
         <title>Menu</title>
     </head>
     <body>
-        <%@ include file = "Includes/cHeader.jsp" %>
+       
+         <%@ include file = "Includes/internationalisationHeader.jsp" %>
+          <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container text-center mt-5">
 
 
@@ -72,7 +74,7 @@
                     </tr>
                     <%
                             }
-%><a href="checkout.jsp">Go to checkout</a><%
+%><a href="checkout.jsp"><%=dataBundle.getString("menu_checkout")%></a><%
                         }
                     %>
                     
@@ -84,7 +86,7 @@
 
 
             <div class="menu">
-                <h1>Menu</h1>
+                <h1><%=dataBundle.getString("menu")%></h1>
 
                 <%            
 
@@ -94,9 +96,9 @@
                 %>
                 <table>
                     <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
+                        <th><%=dataBundle.getString("name")%></th>
+                        <th><%=dataBundle.getString("price")%></th>
+                        <th><%=dataBundle.getString("menu_th3")%></th>
                     </tr>
                     <% for (Food f : menu) {
                     %>  
@@ -138,7 +140,7 @@
             <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
             <%
                 out.println("Please Login to order from menu.");
-            %><a href="index.jsp">Back to index</a><%
+            %><a href="index.jsp"><%=dataBundle.getString("menu_index")%></a><%
                 }
 
             %>

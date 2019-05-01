@@ -18,6 +18,7 @@
 
     <body>
         <div class="container">
+            <%@ include file = "Includes/internationalisationHeader.jsp" %>
             <%@ include file = "Includes/rHeader.jsp" %>
             <%            int restaurantId = loggedInUser.getRestaurantId();
                 FoodDao f1 = new FoodDao("delivery");
@@ -33,10 +34,10 @@
             <table class="table table-hover table-primary ">
                 <thead>
                     <tr>
-                        <th>food Number</th>
-                        <th>name</th>
-                        <th>price</th>
-                        <th>type</th>
+                        <th><%=dataBundle.getString("rMenu_th1")%></th>
+                        <th><%=dataBundle.getString("name")%></th>
+                        <th><%=dataBundle.getString("price")%></th>
+                        <th><%=dataBundle.getString("rMenu_th4")%></th>
                     </tr>
                 </thead>
                 <%
@@ -72,9 +73,9 @@
             <%
             } else {
             %>
-            <p>You have not had any food in your menu.</p>
+            <p><%=dataBundle.getString("rMenu_p1")%></p>
             <br/>
-            <p>Please add your first item.</p>
+            <p><%=dataBundle.getString("rMenu_p2")%></p>
             <%
                 }%>
 

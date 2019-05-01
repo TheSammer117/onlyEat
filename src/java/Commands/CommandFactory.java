@@ -67,6 +67,9 @@ public class CommandFactory {
                 case "placeOrder":
                     c = new PlaceOrderCommand();
                     break;
+                case "changeLanguage":
+                    c = new ChangeLanguageCommand();
+                    break;
                 default:
                     c = new NoActionSuppliedCommand();
                     break;

@@ -10,11 +10,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Restaurants</title>
     </head>
 
     <body>
+        
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container text-center mt-5 " >
             
@@ -25,14 +28,14 @@
 
 
             %>
-            <h1 class="text-left">Takeaway in <%=(String) session.getAttribute("countyName")%></h1>
+            <h1 class="text-left"><%=dataBundle.getString("DispRest_h1")%> <%=(String) session.getAttribute("countyName")%></h1>
             <table class="table table-hover table-primary ">
                 <%                for (Restaurant r : restaurants) {
                 %>
                 <tr>
                     <td >       <a class="restaurantLink" href="ViewMenu.jsp?restId=<%=r.getRestaurantId()%>">    <%=r.getName()%>    </a>    </td>
-                    <td>Phone Number: <%=r.getPhone()%><br/>
-                        Restaurant Location: <%=r.getStreet()%>, <%=r.getTown()%>
+                    <td><%=dataBundle.getString("DispRest_td1")%><%=r.getPhone()%><br/>
+                        <%=dataBundle.getString("DispRest_td2")%> <%=r.getStreet()%>, <%=r.getTown()%>
                     </td>
                 </tr>
                 <%

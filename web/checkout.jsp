@@ -17,6 +17,7 @@
         <title>Checkout</title>
     </head>
     <body>
+         <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/cHeader.jsp" %>
         <%            ArrayList<Cart> cartList = new ArrayList();
             cartList = (ArrayList<Cart>) session.getAttribute("cartList");
@@ -30,7 +31,7 @@
             <div class="row">
                 <div class="col-md-4 order-md-2 mb-4">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted">Your cart</span>
+                        <span class="text-muted"><%=dataBundle.getString("menu_checkout")%></span>
                     </h4>
                     <ul class="list-group mb-3">
                         <%
@@ -43,7 +44,7 @@
                         <li class="list-group-item d-flex justify-content-between ">
                             <div>
                                 <h6 class="my-0"><%=foodName%></h6>
-                                <small class="text-muted">Brief description</small>
+                                <small class="text-muted"><%=dataBundle.getString("menu_checkout")%></small>
                             </div>
                             <span class="text-muted"> € <%=price%></span>
                         </li>                    
@@ -57,51 +58,51 @@
                     </ul>
                 </div>
                 <div class="col-md-8 order-md-1">
-                    <h4 class="mb-3">Shipping address</h4>
+                    <h4 class="mb-3"><%=dataBundle.getString("menu_checkout")%></h4>
                     <form action="FrontController" method="post" class="">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label>First name</label>
+                                <label><%=dataBundle.getString("menu_checkout")%></label>
                                 <input type="text" class="form-control" id="firstname" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label>Last name</label>
+                                <label><%=dataBundle.getString("menu_checkout")%></label>
                                 <input type="text" class="form-control" id="lastname" required>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label>Address</label>
+                            <label><%=dataBundle.getString("menu_checkout")%></label>
                             <input type="text" class="form-control" id="address" required>
                         </div>
                         <hr class="mb-4">
-                        <h4 class="mb-3"> Payment</h4>
+                        <h4 class="mb-3"> <%=dataBundle.getString("menu_checkout")%></h4>
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
                                 <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required >
-                                <label class="custom-control-label">Credit card</label>
+                                <label class="custom-control-label"><%=dataBundle.getString("menu_checkout")%></label>
                             </div>
                             <div class="custom-control custom-radio">
                                 <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required >
-                                <label class="custom-control-label">Debit card</label>
+                                <label class="custom-control-label"><%=dataBundle.getString("menu_checkout")%></label>
                             </div>
                             <div class="custom-control custom-radio">
                                 <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required >
-                                <label class="custom-control-label">PayPal</label>
+                                <label class="custom-control-label"><%=dataBundle.getString("menu_checkout")%></label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label>Name on card</label>
+                                <label><%=dataBundle.getString("menu_checkout")%></label>
                                 <input type="text" class="form-control" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label>Credit card number</label>
+                                <label><%=dataBundle.getString("menu_checkout")%></label>
                                 <input type="text" class="form-control" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-3 mb-3">
-                                <label>Expiration</label>
+                                <label><%=dataBundle.getString("menu_checkout")%></label>
                                 <input type="text" class="form-control" required>
                             </div>
                             <div class="col-md-3 mb-3">
@@ -131,7 +132,7 @@
                         %>
 
                         <div class="mb-10">
-                            <label>Add message with this order</label>
+                            <label><%=dataBundle.getString("menu_checkout")%></label>
                             <input type="text" class="form-control" name="message">
                         </div>
                     </form>
@@ -147,7 +148,7 @@
             <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
             <%
                 out.println("You do not have anything in your cart.");
-            %><a href="index.jsp">Back to index</a></div><%
+            %><a href="index.jsp"><%=dataBundle.getString("menu_checkout")%></a></div><%
                 }
             %>
 

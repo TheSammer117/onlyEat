@@ -15,6 +15,7 @@
         <title>My Profile</title>
     </head>
     <body>
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container text-center">
             <%            int customerId = 0;
@@ -36,42 +37,42 @@
                 <form action="FrontController" method="post">
                     <table class="table table-borderless">
                         <tr>
-                            <td>Username: </td> <td><input type="text" name="username" value="<%=loggedInUser.getUsername()%>" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td1")%></td> <td><input type="text" name="username" value="<%=loggedInUser.getUsername()%>" required/></td>
                         </tr>
                         <tr>
-                            <td>First Name: </td> <td><input type="text" name="firstName" value="<%=loggedInUser.getFirstName()%>" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td2")%></td> <td><input type="text" name="firstName" value="<%=loggedInUser.getFirstName()%>" required/></td>
                         </tr>
                         <tr>
-                            <td>Last Name: </td> <td><input type="text" name="lastName" value="<%=loggedInUser.getLastName()%>" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td3")%></td> <td><input type="text" name="lastName" value="<%=loggedInUser.getLastName()%>" required/></td>
                         </tr>
                         <tr>
-                            <td>Phone Number: </td> <td><input type="text" name="phone" value="<%=loggedInUser.getPhone()%>" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td4")%> </td> <td><input type="text" name="phone" value="<%=loggedInUser.getPhone()%>" required/></td>
                         </tr>
                         <%
                             if (ca.getAddressId() <= 0) {
                         %>
                         <h2 class="text-left">Please tell us your address</h2>
                         <tr>
-                            <td>Address Line 1: </td> <td><input type="text" name="address1" placeholder="We haven't got your address" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td5")%> </td> <td><input type="text" name="address1" placeholder="We haven't got your address" required/></td>
                         </tr>
                         <tr>
-                            <td>Address Line 2: </td> <td><input type="text" name="address2" placeholder="We haven't got your address" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td6")%> </td> <td><input type="text" name="address2" placeholder="We haven't got your address" required/></td>
                         </tr>
                         <tr>
-                            <td>Address Line 3: </td> <td><input type="text" name="address3" placeholder="We haven't got your address" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td7")%> </td> <td><input type="text" name="address3" placeholder="We haven't got your address" required/></td>
                         </tr>
 
                         <%
                         } else {
                         %>
                         <tr>
-                            <td>Address Line 1: </td> <td><input type="text" name="address1" value="<%= ca.getAddress1()%>" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td5")%> </td> <td><input type="text" name="address1" value="<%= ca.getAddress1()%>" required/></td>
                         </tr>
                         <tr>
-                            <td>Address Line 2: </td> <td><input type="text" name="address2" value="<%= ca.getAddress2()%>" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td6")%> </td> <td><input type="text" name="address2" value="<%= ca.getAddress2()%>" required/></td>
                         </tr>
                         <tr>
-                            <td>Address Line 3: </td> <td><input type="text" name="address3" value="<%= ca.getAddress3()%>" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td7")%> </td> <td><input type="text" name="address3" value="<%= ca.getAddress3()%>" required/></td>
                         </tr>
                         <%}%>
                     </table>
