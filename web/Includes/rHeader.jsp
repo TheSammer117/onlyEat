@@ -43,26 +43,7 @@
                         </li>
                     </ul>
                 </div>
-                <form action="FrontController" method="post">
-                            <select name="language" onchange="this.form.submit()">
-                                <%
-                                    String language = (String) session.getAttribute("language");
-                                    if (language == null || language.equals("en")) {
-
-                                %>   
-                                <option value="en" selected>English</option>
-                                <option value="fr">Français</option>
-                                <%
-                                    }else{
-                                %>
-                                    <option value="en">English</option>
-                                    <option value="fr" selected>Français</option>
-                                <%        
-                                    }
-                                %>
-                            </select>
-                            <input type="hidden" name="action" value="changeLanguage"/>
-                        </form>
+               
                             
 
             </nav>
