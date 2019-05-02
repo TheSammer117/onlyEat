@@ -17,8 +17,8 @@
     </head>
 
     <body>
-        <div class="container">
-        <%@ include file = "Includes/internationalisationHeader.jsp" %>
+              <%@ include file = "Includes/internationalisationHeader.jsp" %>
+        <div class="container" >
         <%@ include file = "Includes/rHeader.jsp" %>
             <%            int restaurantId = loggedInUser.getRestaurantId();
                 FoodDao f1 = new FoodDao("delivery");
