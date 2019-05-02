@@ -35,7 +35,7 @@ public class Dao {
     }
 /**
  * closes the connection
- * @param con 
+ * @param con
  */
     public void freeConnection(Connection con) {
         try {

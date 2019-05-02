@@ -37,7 +37,7 @@
                 <form action="FrontController" method="post">
                     <table class="table table-borderless">
                         <tr>
-                            <td><%=dataBundle.getString("cProfile_td1")%></td> <td><input type="text" name="username" value="<%=loggedInUser.getUsername()%>" required/></td>
+                            <td><%=dataBundle.getString("cProfile_td1")%></td> <td><input type="text" name="username" value="<%=loggedInUser.getUsername()%>" readonly/></td>
                         </tr>
                         <tr>
                             <td><%=dataBundle.getString("cProfile_td2")%></td> <td><input type="text" name="firstName" value="<%=loggedInUser.getFirstName()%>" required/></td>

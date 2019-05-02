@@ -3,6 +3,7 @@
     Created on : 15-Feb-2019, 11:50:46
     Author     : samiwise
 --%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Dtos.Cart"%>
 <%@page import="Daos.CartDao"%>
 <%@page import="java.util.ArrayList"%>
@@ -15,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu</title>
     </head>
-    <body>
+    <body class="background2">
 
         <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/cHeader.jsp" %>
@@ -56,6 +57,7 @@
 
                     %>
                     <tr>
+                        
                         <td><%= foodName%>    *<%= quantity%></td>
                     <form action="FrontController" method="post">
                         <input type="hidden" name ="customerId" value="<%= loggedInUser.getCustomerId()%>" />
@@ -101,6 +103,7 @@
                     </tr>
                     <% for (Food f : menu) {
                     %>  
+               
                     <tr ><!--form for adding food to cart-->
                     <form action="FrontController" method="post">
                         <td class="pr-lg-5 pl-lg-3 py-lg-2"><%= f.getName()%></td>
@@ -145,5 +148,6 @@
 
 
         </div>
+            <a href="Includes/footer.jsp"></a>
     </body>
 </html>

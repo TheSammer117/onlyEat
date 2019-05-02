@@ -70,10 +70,7 @@
                                 <input type="text" class="form-control" id="lastname" required>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label><%=dataBundle.getString("checkout_label3")%></label>
-                            <input type="text" class="form-control" id="address" required>
-                        </div>
+                        
                         <hr class="mb-4">
                         <h4 class="mb-3"> <%=dataBundle.getString("checkout_h4b")%></h4>
                         <div class="d-block my-3">
