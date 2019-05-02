@@ -15,13 +15,15 @@
         
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
+        <title>Home</title>
+        <link rel="stylesheet" href="Styles/bootstrap-4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Styles/bootstrap-4.3.1/css/custom.css">
     </head>
-    <body>
+    <body class="background2">
         
         <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/cHeader.jsp" %>
-        <div class="container text-center mt-5">
+        <div class="container text-center mt-5 ">
             <%            String successMessage = (String) session.getAttribute("successMessage");
                 if (successMessage != null) {
             %>
@@ -51,10 +53,7 @@
                 <input type="submit" class="btn btn-info  mt-5" value="Find restaurants" />
                 <input type="hidden" name ="action" value="viewRestaurants" />
             </form>
-
         </div>
         <%@ include file="Includes/footer.jsp" %> 
-
-
     </body>
 </html>

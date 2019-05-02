@@ -21,6 +21,7 @@ public class Restaurant {
     private String street;
     private String town;
     private int countyId;
+    private String image;
 
     public Restaurant() {
         this.restaurantId = 0;
@@ -31,6 +32,7 @@ public class Restaurant {
         this.street = null;
         this.town = null;
         this.countyId = 0;
+        this.image = null;
 
     }
 
@@ -52,6 +54,17 @@ public class Restaurant {
         this.street = street;
         this.town = town;
         this.countyId = countyId;
+
+    }public Restaurant(int restaurantId, String username, String password, String name, String phone, String street, String town, int countyId, String image) {
+        this.restaurantId = restaurantId;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.street = street;
+        this.town = town;
+        this.countyId = countyId;
+        this.image = image;
 
     }
 
@@ -117,6 +130,14 @@ public class Restaurant {
 
     public void setCountyId(int countyId) {
         this.countyId = countyId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

@@ -15,15 +15,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu</title>
     </head>
-    <body>
-       
-         <%@ include file = "Includes/internationalisationHeader.jsp" %>
-          <%@ include file = "Includes/cHeader.jsp" %>
+    <body class="background2">
+
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
+        <%@ include file = "Includes/cHeader.jsp" %>
         <div class="container text-center mt-5">
 
 
             <% if (loggedInUser != null) {
-                String idVal = request.getParameter("restId");
+                    String idVal = request.getParameter("restId");
 
                     if (idVal != null) {
                         int restId = 0;
@@ -63,38 +63,37 @@
                         <input type="hidden" name ="quantity" value="<%= quantity%>" />
                         <input type="hidden" name ="restaurantId" value="<%= restId%>" />
                         <input type="hidden" name ="action" value="removeFromCart" />
-                        <td><input type="submit" class="btn btn-info" value="Remove" /></td>
+                        <td><input type="submit" class="btn btn-danger" value="Remove" /></td>
                     </form>
                     </tr>
                     <tr>
                     <label>  </label>
                     </tr>
                     <tr>
-                    
+
                     </tr>
                     <%
-                            }
-%><a href="checkout.jsp"><%=dataBundle.getString("menu_checkout")%></a><%
                         }
+                    %><a href="checkout.jsp"><%=dataBundle.getString("menu_checkout")%></a><%
+    }
                     %>
-                    
+
                 </table>
             </div>
 
-            <hr>
             <hr>
 
 
             <div class="menu">
                 <h1><%=dataBundle.getString("menu")%></h1>
 
-                <%            
+                <%
 
-                        FoodDao mDao = new FoodDao("delivery");
-                        ArrayList<Food> menu = mDao.getFoodByRestaurantId(restId);
-                        if (menu != null) {
+                    FoodDao mDao = new FoodDao("delivery");
+                    ArrayList<Food> menu = mDao.getFoodByRestaurantId(restId);
+                    if (menu != null) {
                 %>
-                <table>
+                <table class="ml-lg-4 pl-lg-5">
                     <tr>
                         <th><%=dataBundle.getString("name")%></th>
                         <th><%=dataBundle.getString("price")%></th>
@@ -102,19 +101,18 @@
                     </tr>
                     <% for (Food f : menu) {
                     %>  
-                    <tr><!--form for adding food to cart-->
+                    <tr ><!--form for adding food to cart-->
                     <form action="FrontController" method="post">
-                        <td><%= f.getName()%></td>
-                        <td><%= f.getPrice()%></td>
+                        <td class="pr-lg-5 pl-lg-3 py-lg-2"><%= f.getName()%></td>
+                        <td class="pr-lg-5 pl-lg-3 py-lg-2"><%= f.getPrice()%></td>
                         <input type="hidden" name ="customerId" value="<%= loggedInUser.getCustomerId()%>" />
                         <input type="hidden" name ="foodId" value="<%= f.getFoodId()%>" />
-                        <td><input type="number" name ="quantity"  /></td>
+                        <td class="pr-lg-5 pl-lg-3 py-lg-2"><input type="number" name ="quantity" required /></td>
                         <input type="hidden" name ="restaurantId" value="<%= restId%>" />
                         <input type="hidden" name ="action" value="addToCart" />
-                        <td><input type="submit" class="btn btn-info" value="Add to cart" /></td>
+                        <td class=" pl-lg-3 py-lg-2"><input type="submit" class="btn btn-info" value="Add to cart" /></td>
                     </form>
                     </tr>
-
                     <%
                         }
                     %>

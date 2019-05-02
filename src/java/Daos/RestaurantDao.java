@@ -230,6 +230,7 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
         String phone;
         String street;
         String town;
+        String image;
 
         ArrayList<Restaurant> restaurants = new ArrayList();
         try {
@@ -247,7 +248,8 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
                 street = rs.getString("street");
                 town = rs.getString("town");
                 countyId = rs.getInt("county_id");
-                Restaurant r = new Restaurant(id, username, password, name, phone, street, town, countyId);
+                image = rs.getString("image");
+                Restaurant r = new Restaurant(id, username, password, name, phone, street, town, countyId, image);
                 restaurants.add(r);
             }
         } catch (SQLException ex) {

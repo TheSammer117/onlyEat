@@ -11,8 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <link rel="stylesheet" href="Styles/bootstrap-4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="Styles/bootstrap-4.3.1/css/custom.css">
+        
     </head>
     <script src="Jquery/jquery-3.3.1.js"></script>
     <script src="Jquery/rememberMe.js"></script>

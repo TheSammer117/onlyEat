@@ -15,7 +15,7 @@
         <title>View Restaurants</title>
     </head>
 
-    <body>
+    <body class="background1">
         
         <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/cHeader.jsp" %>
@@ -33,6 +33,7 @@
                 <%                for (Restaurant r : restaurants) {
                 %>
                 <tr>
+                    <td><img src="Images/<%= r.getImage() %>" alt="<%=r.getName() %>"></td>
                     <td >       <a class="restaurantLink" href="ViewMenu.jsp?restId=<%=r.getRestaurantId()%>">    <%=r.getName()%>    </a>    </td>
                     <td><%=dataBundle.getString("DispRest_td1")%><%=r.getPhone()%><br/>
                         <%=dataBundle.getString("DispRest_td2")%> <%=r.getStreet()%>, <%=r.getTown()%>
