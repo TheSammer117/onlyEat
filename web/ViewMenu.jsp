@@ -46,7 +46,7 @@
                         int quantity;
                         String foodName;
                         if (cartList.isEmpty()) {
-                            out.println("No item in your cart, please select one from the menu");
+                            out.println(dataBundle.getString("menu_th6"));
                         } else {
                             session.setAttribute("cartList", cartList);
                             for (Cart cartItem : cartList) {
