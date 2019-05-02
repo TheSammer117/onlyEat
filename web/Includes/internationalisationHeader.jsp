@@ -28,11 +28,11 @@
 
         %>   
         <option value="en" selected>English</option>
-        <option value="fr">Français</option>
+        <option value="cn">Chinese</option>
         <%                                } else {
         %>
         <option value="en">English</option>
-        <option value="fr" selected>Français</option>
+        <option value="cn" selected>Chinese</option>
         <%
             }
         %>

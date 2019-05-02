@@ -48,7 +48,7 @@
                     <input type="hidden" name ="action" value="updatePrice" />
                     <input type="hidden" name ="restaurantId" value="<%=loggedInUser.getRestaurantId()%>" />
                     <input type="hidden" name ="foodId" value="<%=f.getFoodId()%>" />
-                    <input type="submit" class="btn btn-secondary" value="Update" />
+                    <input type="submit" class="btn btn-secondary" value="<%=dataBundle.getString("updatePrice_update")%>" />
                 </form>
             </div>
             <%

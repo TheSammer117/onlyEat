@@ -18,8 +18,8 @@
 
     <body>
         <div class="container">
-            <%@ include file = "Includes/internationalisationHeader.jsp" %>
-            <%@ include file = "Includes/rHeader.jsp" %>
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
+        <%@ include file = "Includes/rHeader.jsp" %>
             <%            int restaurantId = loggedInUser.getRestaurantId();
                 FoodDao f1 = new FoodDao("delivery");
                 ArrayList<Food> foods = new ArrayList();
@@ -27,7 +27,7 @@
                 FoodTypeDao ftDao = new FoodTypeDao("delivery");
             %>
 
-            <h2>Menu :</h2>
+            <h2><%=dataBundle.getString("rMenu_h1")%></h2>
             <%
                 if (foods != null && !foods.isEmpty()) {
             %>
@@ -35,8 +35,8 @@
                 <thead>
                     <tr>
                         <th><%=dataBundle.getString("rMenu_th1")%></th>
-                        <th><%=dataBundle.getString("name")%></th>
-                        <th><%=dataBundle.getString("price")%></th>
+                        <th><%=dataBundle.getString("rMenu_name")%></th>
+                        <th><%=dataBundle.getString("rMenu_price")%></th>
                         <th><%=dataBundle.getString("rMenu_th4")%></th>
                     </tr>
                 </thead>
@@ -55,7 +55,7 @@
                             <form action="updatePrice.jsp" method="post">
                                 <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
                                 <input type="hidden" name ="foodId" value="<%=foods.get(i).getFoodId()%>" />
-                                <input type="submit" class="btn btn-secondary" value="Update the Price" /> 
+                                <input type="submit" class="btn btn-secondary" value="<%=dataBundle.getString("rMenu_update")%>" /> 
                             </form>
                         </td>
                         <td>
@@ -63,7 +63,7 @@
                                 <input type="hidden" name ="action" value="deleteFood" />
                                 <input type="hidden" name ="restaurantId" value="<%=restaurantId%>" />
                                 <input type="hidden" name ="foodId" value="<%=foods.get(i).getFoodId()%>" />
-                                <input type="submit" class="btn btn-danger" value="Delete the Item" /> 
+                                <input type="submit" class="btn btn-danger" value="<%=dataBundle.getString("rMenu_delete")%>" /> 
                             </form>
                         </td>                
                     </tr>
@@ -80,7 +80,7 @@
                 }%>
 
             <form action="AddFood.jsp" method="post">
-                <input type="submit" class="btn btn-info" value="Add a food" /> 
+                <input type="submit" class="btn btn-info" value="<%=dataBundle.getString("rMenu_add")%>" /> 
             </form>
         </div>
         <%@ include file="Includes/footer.jsp" %> 

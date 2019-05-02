@@ -21,6 +21,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+        <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/rHeader.jsp" %>
         <div class="container text-center mt-5">
                      
@@ -48,14 +49,14 @@
 
             %>
 
-            <h2 class="text-left">Orders :</h2>
+            <h2 class="text-left"><%=dataBundle.getString("reload_h2")%></h2>
             <table class="table table-hover table-primary ">
                 <thead>
                     <tr>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Date</th>
-                        <th>Confirm</th>
+                        <th><%=dataBundle.getString("reload_th1")%></th>
+                        <th><%=dataBundle.getString("reload_th2")%></th>
+                        <th><%=dataBundle.getString("reload_th3")%></th>
+                        <th><%=dataBundle.getString("reload_th4")%></th>
                     </tr>
                 </thead>
                 <%    for (int i = 0; i < foods.size(); i++) {
@@ -77,7 +78,7 @@
                             <form action="FrontController" method="post">
                                 <input type="hidden" name ="action" value="confirmOrder" />
                                 <input type="hidden" name ="orderId" value="<%=orderId%>" />
-                                <input type="submit" class="btn btn-danger" value="Delivery" /> 
+                                <input type="submit" class="btn btn-danger" value="<%=dataBundle.getString("reload_th5")%>" /> 
                             </form>
                         </td>
                     </tr>
@@ -89,7 +90,7 @@
             <%
             } else {
             %>
-            <p class="mt-4">You have not got any item in your menu yet!!</p>
+            <p class="mt-4"><%=dataBundle.getString("reload_p1")%></p>
             <%
                 }%>
 
@@ -97,8 +98,8 @@
             <% } else {
             %>
             <img width="150" height="150" class="mb-4 mt-4" alt="logo" src="Images/Logo.png" />
-            <h2>Welcome!</h2>
-            <p>Please <a  href="restaurantLogin.jsp">Sign In</a> to manage your restaurant</p>
+            <h2><%=dataBundle.getString("reload_h2welcome")%></h2>
+            <p><%=dataBundle.getString("reload_p2")%> <a  href="restaurantLogin.jsp"><%=dataBundle.getString("reload_p3")%></a><%=dataBundle.getString("reload_p4")%></p>
 
 
             <%
@@ -106,6 +107,6 @@
 
             %>
         </div>
-        Current Time: <%=new java.util.Date() %>
+       <%=dataBundle.getString("reload_time")%> <%=new java.util.Date() %>
     </body>
 </html>

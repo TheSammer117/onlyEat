@@ -22,27 +22,27 @@
                 <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
                 <table class="table table-borderless">
                     <tr>
-                        <td scope="row"><input size="20" type="text" placeholder="Username" name="username"  required/></td>
+                        <td scope="row"><input size="20" type="text" placeholder="<%=dataBundle.getString("rRegister_td1")%>" name="username"  required/></td>
                     </tr>
                     <tr>
-                        <td scope="row"><input type="password" placeholder="Password" name="password"  required/></td>
+                        <td scope="row"><input type="password" placeholder="<%=dataBundle.getString("rRegister_td2")%>" name="password"  required/></td>
                     </tr>
                     <tr>
-                        <td scope="row"><input type="text" placeholder="Restaurant Name" name="name"  required/></td>
+                        <td scope="row"><input type="text" placeholder="<%=dataBundle.getString("rRegister_td3")%>" name="name"  required/></td>
                     </tr>
                     <tr>
-                        <td scope="row"><input type="text" placeholder="Phone Number" name="phone"  required/></td>
+                        <td scope="row"><input type="text" placeholder="<%=dataBundle.getString("rRegister_td4")%>" name="phone"  required/></td>
                     </tr>
                     <tr>
-                        <td scope="row"><input type="text" placeholder="Street" name="street"  required/></td>
+                        <td scope="row"><input type="text" placeholder="<%=dataBundle.getString("rRegister_td5")%>" name="street"  required/></td>
                     </tr>
                     <tr>
-                        <td scope="row"><input type="text" placeholder="Town" name="town"  required/></td>
+                        <td scope="row"><input type="text" placeholder="<%=dataBundle.getString("rRegister_td6")%>" name="town"  required/></td>
                     </tr>
                     <tr>
                         <td scope="row">
                             <select name="countyId">
-                                <option>Select a county</option>
+                                <option><%=dataBundle.getString("rRegister_opt")%></option>
                                 <% ArrayList<County> Counties = new ArrayList();
                                     CountyDao cDao = new CountyDao("delivery");
                                     Counties = cDao.getAllCounties();
@@ -57,7 +57,7 @@
                     </tr>
                 </table>
 
-                <input type="submit" class="btn btn-info" value="Create My Account" />
+                <input type="submit" class="btn btn-info" value="<%=dataBundle.getString("rRegister_create")%>" />
                 <input type="hidden" name ="action" value="restaurantRegister" />
             </form>
         </div>
