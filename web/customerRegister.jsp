@@ -34,7 +34,7 @@
                         <td scope="row"><input size="20" type="text" placeholder="Your Phone Number" name="phone"  required/></td>
                     </tr>
                 </table>
-                <input type="submit" class="btn btn-info" value="Create My Account" />
+                <input type="submit" class="btn btn-info" value="<%=dataBundle.getString("cRegister_b3")%>" />
                 <input type="hidden" name ="action" value="customerRegister" />
             </form>
             <br/>

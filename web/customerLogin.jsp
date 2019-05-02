@@ -22,11 +22,11 @@
             <form class="form-signin" action="FrontController" method="post">
                 <img width="150" height="150" class="mb-4" alt="logo" src="Images/Logo.png" />
                 <table class="table table-borderless">
-                    <tr><td scope="row"><%=dataBundle.getString("menu_checkout")%> <input name="username" required size="20" type="text" id="username"/> </td></tr>
-                    <tr><td scope="row"><%=dataBundle.getString("menu_checkout")%> <input name="password" required size="20" type="password" id="pass"/> </td> </tr>
-                    <tr><td scope="row" colspan="2"><%=dataBundle.getString("menu_checkout")%> <input name="remember-me" type="checkbox" value="remember-me" id="remember_me" /></td></tr>
+                    <tr><td scope="row"><%=dataBundle.getString("cLogin_td1")%> <input name="username" required size="20" type="text" id="username"/> </td></tr>
+                    <tr><td scope="row"><%=dataBundle.getString("cLogin_td2")%> <input name="password" required size="20" type="password" id="pass"/> </td> </tr>
+                    <tr><td scope="row" colspan="2"><%=dataBundle.getString("cLogin_td3")%> <input name="remember-me" type="checkbox" value="remember-me" id="remember_me" /></td></tr>
                 </table>
-                <input type="submit" class="btn btn-info" value="Login" />
+                <input type="submit" class="btn btn-info" value="<%=dataBundle.getString("cLogin_b2")%>" />
                 <input type="hidden" name ="action" value="customerLogin" />
             </form>
             <br/>

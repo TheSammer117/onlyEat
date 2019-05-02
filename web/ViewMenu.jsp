@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu</title>
     </head>
-    <body class="background2">
+    <body>
 
         <%@ include file = "Includes/internationalisationHeader.jsp" %>
         <%@ include file = "Includes/cHeader.jsp" %>
@@ -63,7 +63,7 @@
                         <input type="hidden" name ="quantity" value="<%= quantity%>" />
                         <input type="hidden" name ="restaurantId" value="<%= restId%>" />
                         <input type="hidden" name ="action" value="removeFromCart" />
-                        <td><input type="submit" class="btn btn-danger" value="Remove" /></td>
+                        <td><input type="submit" class="btn btn-danger" value="<%=dataBundle.getString("menu_th4")%>" /></td>
                     </form>
                     </tr>
                     <tr>
@@ -110,7 +110,7 @@
                         <td class="pr-lg-5 pl-lg-3 py-lg-2"><input type="number" name ="quantity" required /></td>
                         <input type="hidden" name ="restaurantId" value="<%= restId%>" />
                         <input type="hidden" name ="action" value="addToCart" />
-                        <td class=" pl-lg-3 py-lg-2"><input type="submit" class="btn btn-info" value="Add to cart" /></td>
+                        <td class=" pl-lg-3 py-lg-2"><input type="submit" class="btn btn-info" value="<%=dataBundle.getString("menu_th5")%>" /></td>
                     </form>
                     </tr>
                     <%

@@ -50,7 +50,7 @@
                         }
                     %>
                 </select>
-                <input type="submit" class="btn btn-info  mt-5" value="Find restaurants" />
+                <input type="submit" class="btn btn-info  mt-5" value="<%=dataBundle.getString("index_button") %>" />
                 <input type="hidden" name ="action" value="viewRestaurants" />
             </form>
         </div>

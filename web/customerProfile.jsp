@@ -51,7 +51,7 @@
                         <%
                             if (ca.getAddressId() <= 0) {
                         %>
-                        <h2 class="text-left">Please tell us your address</h2>
+                        <h2 class="text-left"><%=dataBundle.getString("cProfile_td8")%></h2>
                         <tr>
                             <td><%=dataBundle.getString("cProfile_td5")%> </td> <td><input type="text" name="address1" placeholder="We haven't got your address" required/></td>
                         </tr>
@@ -78,7 +78,7 @@
                     </table>
                     <input type="hidden" name ="action" value="saveCustomerProfile" />
                     <input type="hidden" name ="customerId" type="text" value="<%= loggedInUser.getCustomerId()%>" />
-                    <input type="submit" class="btn btn-info" value="Save" />
+                    <input type="submit" class="btn btn-info" value="<%=dataBundle.getString("cProfile_td9")%>" />
                 </form>
             </div>
         </div>
