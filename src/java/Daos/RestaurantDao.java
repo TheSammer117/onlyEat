@@ -25,6 +25,17 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
         super(databaseName);
     }
 
+    /**
+     * Takes in restaurant values and registers them to the site(saves them in the db)
+     * @param username
+     * @param password
+     * @param name
+     * @param phone
+     * @param street
+     * @param town
+     * @param countyId
+     * @return new restaurant's id or -1 if register failed
+     */
     @Override
     public int registerRestaurant(String username, String password, String name, String phone, String street, String town, int countyId) {
         Connection con = null;
@@ -78,6 +89,12 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
         return newId;
     }
 
+    /**
+     * This method gets restaurant details by its username and password
+     * @param username
+     * @param password
+     * @return the restaurant
+     */
     @Override
     public Restaurant getRestaurantByUsernamePassword(String username, String password) {
         Connection con = null;
@@ -132,6 +149,10 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
         return r;
     }
 
+    /**
+     * gets a listing of all restaurants
+     * @return arraylist of restaurants
+     */
     @Override
     public ArrayList<Restaurant> getAllRestaurants() {
         Connection conn = null;
@@ -176,6 +197,11 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
         return restaurants;
     }
 
+    /**
+     * Gets the hashed secured password by the restaurants username
+     * @param username
+     * @return hashed password
+     */
     @Override
     public String getHashedPasswordByUsername(String username) {
         Connection con = null;
@@ -218,6 +244,11 @@ public class RestaurantDao extends Dao implements RestaurantDaoInterface {
         return securedPassword;
     }
 
+    /**
+     * Gets all restaurants from a certain county
+     * @param countyId
+     * @return arraylist of restaurants
+     */
     @Override
     public ArrayList<Restaurant> getRestaurantsByCountyId(int countyId) {
         Connection con = null;

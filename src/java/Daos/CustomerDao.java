@@ -22,6 +22,15 @@ public class CustomerDao extends Dao implements CustomerDaoInterface {
         super(databaseName);
     }
 
+    /**
+     * This method takes in all the values of a customer and registers him to the site (inserts them into the db)
+     * @param username
+     * @param password
+     * @param firstName
+     * @param lastName
+     * @param phone
+     * @return the new id of the customer if works, or -1 if failed
+     */
     @Override
     public int registerCustomer(String username, String password, String firstName, String lastName, String phone) {
         Connection con = null;
@@ -65,6 +74,12 @@ public class CustomerDao extends Dao implements CustomerDaoInterface {
         return newId;
     }
 
+    /**
+     * Pulls a customer from the db with a specific username a password
+     * @param username
+     * @param password
+     * @return the customer with the username and password passed through the params
+     */
     @Override
     public Customer getCustomerByUsernamePassword(String username, String password) {
         Connection con = null;
@@ -112,6 +127,15 @@ public class CustomerDao extends Dao implements CustomerDaoInterface {
         return c;
     }
 
+    /**
+     * This method takes in values that are to be updated in the customers profile
+     * @param customerId
+     * @param username
+     * @param firstName
+     * @param lastName
+     * @param phone
+     * @return returns rows affected indicating how many rows were changed in the db
+     */
     @Override
     public int updateCustomerProfile(int customerId, String username, String firstName, String lastName, String phone) {
         Connection conn = null;
@@ -143,6 +167,11 @@ public class CustomerDao extends Dao implements CustomerDaoInterface {
         return rowsUpdated;
     }
 
+    /**
+     * Gets the hashed password with a specific username passed in the param
+     * @param username
+     * @return the secured hashed password
+     */
     @Override
     public String getHashedPasswordByUsername(String username) {
         Connection con = null;

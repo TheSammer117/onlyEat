@@ -24,6 +24,11 @@ public class CartDao extends Dao implements CartDaoInterface {
         super(databaseName);
     }
 
+    /**
+     * Takes in a customer id to retrieve the cart of that customer
+     * @param customerId
+     * @return an arraylist containing the customer's cart items
+     */
     @Override
     public ArrayList<Cart> getCartListByCustomerId(int customerId) {
         Connection conn = null;
@@ -65,6 +70,12 @@ public class CartDao extends Dao implements CartDaoInterface {
         return cartList;
     }
 
+    /**
+     * This adds food to a cart for a customer
+     * @param customerId
+     * @param foodId
+     * @param quantity 
+     */
     @Override
     public void addToCart(int customerId, int foodId, int quantity) {
         Connection con = null;
@@ -94,6 +105,13 @@ public class CartDao extends Dao implements CartDaoInterface {
         }
     }
 
+    /**
+     * This removes an item from a customers cart
+     * @param customerId
+     * @param foodId
+     * @param quantity
+     * @return rows affected indiacating how many rows in the db that were changed
+     */
     @Override
     public int removeAnItemFromCart(int customerId, int foodId, int quantity) {
         Connection con = null;
@@ -128,6 +146,11 @@ public class CartDao extends Dao implements CartDaoInterface {
         return rowsAffected;
     }
 
+    /**
+     * Empties a customers cart after they checkout
+     * @param customerId
+     * @return 
+     */
     @Override
     public int emptyCartByCustomerId(int customerId) {
         Connection con = null;

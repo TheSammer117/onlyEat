@@ -24,6 +24,15 @@ public class C_addressDao extends Dao implements C_addressDaoInterface {
         super(databaseName);
     }
 
+    /**
+     * 
+     * This method is passed a customer's id, and queries
+     * the db for a customer with that id
+     * 
+     * 
+     * @param customerId
+     * @return the address of the customer with the passed id 
+     */
     @Override
     public C_address getCustomerAddressByCustomerId(int customerId) {
         Connection con = null;
@@ -70,6 +79,17 @@ public class C_addressDao extends Dao implements C_addressDaoInterface {
         return ca;
     }
 
+    /**
+     * This method takes in values of a customer's address and inserts them
+     * into the customer address table
+     * 
+     * @param customerId
+     * @param address1
+     * @param address2
+     * @param address3
+     * @return the new id of the customer address in the table if worked, if failed 
+     * it returns -1
+     */
     @Override
     public int addCustomerAddress(int customerId, String address1, String address2, String address3) {
         Connection con = null;
@@ -112,6 +132,15 @@ public class C_addressDao extends Dao implements C_addressDaoInterface {
         return newId;
     }
 
+    /**
+     * This method takes in values for a customer's address to be replaced (updates) 
+     * the old address values.
+     * @param customerId
+     * @param address1
+     * @param address2
+     * @param address3
+     * @return the number of rows updated if any.
+     */
     @Override
     public int updateCustomerAddress(int customerId, String address1, String address2, String address3) {
         Connection conn = null;

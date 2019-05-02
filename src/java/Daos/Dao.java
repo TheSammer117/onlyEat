@@ -11,7 +11,10 @@ public class Dao {
     public Dao(String databaseName) {
         this.databaseName = databaseName;
     }
-
+/**
+ * Gets the connection to the db
+ * @return the connections
+ */
     public Connection getConnection() {
 
         String driver = "com.mysql.jdbc.Driver";
@@ -30,7 +33,10 @@ public class Dao {
         }
         return con;
     }
-
+/**
+ * closes the connection
+ * @param con 
+ */
     public void freeConnection(Connection con) {
         try {
             if (con != null) {

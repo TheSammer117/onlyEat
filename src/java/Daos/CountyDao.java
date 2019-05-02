@@ -23,7 +23,10 @@ public class CountyDao extends Dao implements CountyDaoInterface {
     public CountyDao(String databaseName) {
         super(databaseName);
     }
-
+/**
+ * This pulls all the counties from the db
+ * @return an arraylist of counties
+ */
     @Override
     public ArrayList<County> getAllCounties() {
             Connection con = null;
@@ -62,6 +65,12 @@ public class CountyDao extends Dao implements CountyDaoInterface {
         return CountyArr;
     }
 
+    /**
+     * 
+     * Gets a county by it's id
+     * @param countyId
+     * @return the county with the id of the parameter
+     */
     @Override
     public County getCountyById(int countyId) {
         Connection con = null;

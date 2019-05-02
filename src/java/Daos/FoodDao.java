@@ -23,6 +23,11 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         super(databaseName);
     }
 
+    /**
+     * Gets all the food by a specific restaurant by its id, passed via the param(menu)
+     * @param restaurantId
+     * @return arraylist of all the food the restaurant has on it's menu
+     */
     @Override
     public ArrayList<Food> getFoodByRestaurantId(int restaurantId) {
         Connection conn = null;
@@ -68,6 +73,14 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         return fList;
     }
 
+    /**
+     * This method allows the restaurant to add food to their menu, taking in the values
+     * @param restaurantId
+     * @param food
+     * @param price
+     * @param typeId
+     * @return new id of the food or -1 if failed
+     */
     @Override
     public int addAFood(int restaurantId, String food, double price, int typeId) {
         Connection con = null;
@@ -107,6 +120,12 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         return newId;
     }
 
+    /**
+     * removes a food item from a restaurants menu by the restaurants and food id
+     * @param restaurantId
+     * @param foordId
+     * @return returns rows affected indicating how many rows were changed in the db
+     */
     @Override
     public int removeFood(int restaurantId, int foordId) {
         Connection con = null;
@@ -142,6 +161,13 @@ public class FoodDao extends Dao implements FoodDaoInterface {
     }
 
 
+    /**
+     * allows the restaurant to update the price of one of their food items, by taking in new values
+     * @param restaurantId
+     * @param foordId
+     * @param price
+     * @return returns rows affected indicating how many rows were changed in the db
+     */
     @Override
     public int updatePrice(int restaurantId, int foordId, double price) {
         Connection con = null;
@@ -176,6 +202,12 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         return rowsUpdated;
     }
 
+    /**
+     * Gets a specific food item specified by the restaurant and food id
+     * @param restaurantId
+     * @param foodId
+     * @return the Food item
+     */
     @Override
     public Food getFood(int restaurantId, int foodId) {
         Connection conn = null;
@@ -221,6 +253,11 @@ public class FoodDao extends Dao implements FoodDaoInterface {
         }
         return food;
     }
+    /**
+     * Gets a specific food item specified by food id
+     * @param foodId
+     * @return the Food
+     */
     @Override
     public Food getFoodByFoodId(int foodId) {
         Connection conn = null;

@@ -26,6 +26,11 @@ public class CustomerOrderDao extends Dao implements CustomerOrderDaoInterface {
         super(databaseName);
     }
 
+    /**
+     * Pulls a customerid by a specific orderId passed in the param
+     * @param orderId
+     * @return customer id
+     */
     @Override
     public int getCustomerIdByOrderId(int orderId) {
         Connection con = null;
@@ -67,6 +72,11 @@ public class CustomerOrderDao extends Dao implements CustomerOrderDaoInterface {
         return customerId;
     }
 
+    /**
+     * Pulls the order details from the db specified foodId
+     * @param foodId
+     * @return arraylist of order details
+     */
     @Override
     public ArrayList<OrderDetail> getOrderDetails(int foodId) {
 
@@ -111,6 +121,11 @@ public class CustomerOrderDao extends Dao implements CustomerOrderDaoInterface {
         return OrderDetails;
     }
 
+    /**
+     * This method changes the status of a customers order from unpaid to paid
+     * @param orderId
+     * @return returns rows affected indicating how many rows were changed in the db, this tells us if db changed or not
+     */
     @Override
     public int FinishOrder(int orderId) {
         Connection con = null;
@@ -141,6 +156,12 @@ public class CustomerOrderDao extends Dao implements CustomerOrderDaoInterface {
         return rowsAffected;
     }
 
+    /**
+     * Makes a order for a customer with the customers id and message passed via the params
+     * @param customerId
+     * @param customerMessage
+     * @return new id of the order if passed or -1 if failed
+     */
     @Override
     public int createACustomerOrder(int customerId, String customerMessage) {
         Connection con = null;

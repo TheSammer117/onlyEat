@@ -26,6 +26,12 @@ public class OrderDetailDao extends Dao implements OrderDetailDaoInterface {
         super(databaseName);
     }
 
+    /**
+     * Gets the quantity of food from a order for a specific food
+     * @param orderId
+     * @param foodId
+     * @return the quantity of that food item
+     */
     @Override
     public int getFoodAmount(int orderId, int foodId) {
         Connection con = null;
@@ -67,6 +73,11 @@ public class OrderDetailDao extends Dao implements OrderDetailDaoInterface {
         return amount;
     }
 
+    /**
+     * Gets the details of a an order by the food item's id
+     * @param foodId
+     * @return arraylist of order details
+     */
     @Override
     public ArrayList<OrderDetail> getFoodDetails(int foodId) {
         Connection con = null;
@@ -112,6 +123,12 @@ public class OrderDetailDao extends Dao implements OrderDetailDaoInterface {
         return OrderDetail;
     }
 
+    
+    /**
+     * Gets the order id by a food id
+     * @param foodId
+     * @return order id
+     */
     @Override
     public int getOrderIdByFoodId(int foodId) {
         Connection con = null;
@@ -153,6 +170,11 @@ public class OrderDetailDao extends Dao implements OrderDetailDaoInterface {
         return orderId;
     }
 
+    /**
+     * Gets the food id  by an order id
+     * @param orderId
+     * @return arraylist of food ids
+     */
     @Override
     public ArrayList<Integer> getFoodIdByOrder(int orderId) {
         Connection con = null;
@@ -188,6 +210,13 @@ public class OrderDetailDao extends Dao implements OrderDetailDaoInterface {
         return foodIds;
     }
 
+    /**
+     * Makes an order detail by the order id
+     * @param orderId
+     * @param foodId
+     * @param quantity
+     * @return new id of order details or -1 if failed
+     */
     @Override
     public int createAnOrderDetailByOrderId(int orderId, int foodId, int quantity) {
         Connection con = null;

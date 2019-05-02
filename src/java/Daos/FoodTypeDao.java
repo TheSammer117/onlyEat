@@ -21,7 +21,12 @@ public class FoodTypeDao extends Dao implements FoodTypeDaoInterface {
     public FoodTypeDao(String databaseName) {
         super(databaseName);
     }
-
+    
+    /**
+     * Gets the food type by its food type id
+     * @param typeId
+     * @return food type selected
+     */
     @Override
     public String getNameById(int typeId) {
         Connection con = null;
@@ -63,6 +68,10 @@ public class FoodTypeDao extends Dao implements FoodTypeDaoInterface {
         return name;
     }
 
+    /**
+     * Gets a list of all food types
+     * @return arraylist of food types
+     */
     @Override
     public ArrayList<FoodType> getAllFoodType() {
         Connection con = null;
